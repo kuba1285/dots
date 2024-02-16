@@ -1,0 +1,15 @@
+swipe:
+  3:
+    left:
+      command: hyprctl activewindow | grep -E "google-chrome|firefox|thunar" && echo key ctrl+shift+tab | dotool
+    right:
+      command: hyprctl activewindow | grep -E "google-chrome|firefox|thunar" && echo key ctrl+tab | dotool
+    up:
+      command: hyprctl activewindow | grep -E "google-chrome|firefox|thunar" && echo key ctrl+t | dotool
+    down:
+      command: hyprctl activewindow | grep -E "google-chrome|firefox|thunar" && echo key ctrl+w | dotool
+
+threshold:
+  swipe: 0.8 
+interval:
+  swipe: 1.8
