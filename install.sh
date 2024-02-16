@@ -244,8 +244,10 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
         sudo mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
         echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf &>> $INSTLOG
         echo -e "WLR_NO_HARDWARE_CURSORS=1" | sudo tee -a /etc/environment
+        
         # Install the correct hyprland version
         echo -e "$CNT - Installing Hyprland, this may take a while..."
+        
         #check for hyprland and remove it so the -nvidia package can be installed
         if yay -Q hyprland &>> /dev/null ; then
             yay -R --noconfirm hyprland &>> $INSTLOG &
