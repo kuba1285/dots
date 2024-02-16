@@ -153,4 +153,4 @@ alias vc='code' # gui code editor
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #Display specs
-#neofetch
+neofetch
