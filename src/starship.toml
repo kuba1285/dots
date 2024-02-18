@@ -16,6 +16,7 @@ $git_metrics\
 [](fg:blue)\
 $fill\
 [](fg:yellow)\
+$status\
 $cmd_duration\
 [](fg:white bg:yellow)\
 $time\
@@ -98,6 +99,10 @@ error_symbol = '[❯](bold red)'
 min_time = 1
 style = 'fg:black bg:yellow'
 format = "[ $duration  ]($style)" # nf-pl-right_soft_divider, nf-mdi-clock
+
+[status]
+disabled = false
+format = '[ $status ✘ ](fg:red bg:yellow)'
 
 [time]
 disabled = false
