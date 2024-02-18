@@ -1,3 +1,6 @@
+linux-headers
+make
+patch
 ruby-fusuma
 dotool
 google-chrome
