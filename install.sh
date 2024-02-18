@@ -307,7 +307,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Adding Fonts for Rofi"
     sudo mkdir $HOME/.local/share/fonts
     sudo cp src/Icomoon-Feather.ttf $HOME/.local/share/fonts
-    fc-cache -fv
 fi
 
 ### Install the starship shell ###
@@ -331,6 +330,9 @@ if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
     cp .configs/.zshrc $HOME
     chsh -s $(which zsh)
 fi
+
+sudo gpasswd -a $USER input
+fc-cache -fv &>> $INSTLOG
 
 ### Script is done ###
 echo -e "$CNT - Script had completed!"
