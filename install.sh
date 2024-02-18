@@ -142,24 +142,6 @@ install_software() {
 # clear the screen
 clear
 
-# set some expectations for the user
-echo -e "$CNT - You are about to execute a script that would attempt to setup Hyprland."
-sleep 1
-
-# attempt to discover if this is a VM or not
-echo -e "$CNT - Checking for Physical or VM..."
-ISVM=$(hostnamectl | grep Chassis)
-echo -e "Using $ISVM"
-if [[ $ISVM == *"vm"* ]]; then
-    echo -e "$CWR - Please note that VMs are not fully supported and if you try to run this on
-    a Virtual Machine there is a high chance this will fail."
-    sleep 1
-fi
-
-# let the user know that we will use sudo
-echo -e "$CNT - This script will run some commands that require sudo. You will be prompted to enter your password."
-sleep 1
-
 # give the user an option to exit out
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to continue with the install (y,n) ' CONTINST
 if [[ $CONTINST == "Y" || $CONTINST == "y" ]]; then
