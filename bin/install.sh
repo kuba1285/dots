@@ -191,8 +191,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e '\neval "$(starship init bash)"' >> ~/.bashrc
     echo -e '\neval "$(starship init zsh)"' >> ~/.zshrc
     echo -e "$CNT - copying starship config file to ~/.config ..."
-    cp src/starship.toml ~/.config/
-
+    
     # make files exec
     chmod +x ~/.config/hypr/scripts/*
     
