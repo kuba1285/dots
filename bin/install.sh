@@ -129,7 +129,6 @@ fi
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install the packages? (y,n) ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
 
-    # Prep Stage - Bunch of needed items
     echo -e "$CNT - Prep Stage - Installing needed components, this may take a while..."
     install_list $LISTAPP
 
