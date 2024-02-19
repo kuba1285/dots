@@ -183,7 +183,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     cp -rT $PARENT/. ~/ &>> $INSTLOG
     echo -e '\neval "$(starship init bash)"' >> ~/.bashrc
     echo -e '\neval "$(starship init zsh)"' >> ~/.zshrc
-    echo -e "$CNT - copying starship config file to ~/.config ..."
     
     # make files exec
     chmod +x ~/.config/hypr/scripts/*
