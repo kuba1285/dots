@@ -156,12 +156,6 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
         install_software hyprland
     fi
 
-    # Stage 1 - main components
-    echo -e "$CNT - Installing main components, this may take a while..."
-    for SOFTWR in ${install_stage[@]}; do
-        install_software $SOFTWR 
-    done
-
     # Start the bluetooth service
     echo -e "$CNT - Starting the Bluetooth Service..."
     sudo systemctl enable --now bluetooth.service &>> $INSTLOG
