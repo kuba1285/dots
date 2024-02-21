@@ -226,6 +226,7 @@ yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
 # Install MBP audio driver
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install MBP audio driver? (y,n) ' MBP
 if [[ $MBP == "Y" || $MBP == "y" ]]; then
+    echo -e "$CNT - Installing driver, this may take a while..."
     cd
     git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
     cd snd_hda_macbookpro/
