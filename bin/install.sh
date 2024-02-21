@@ -174,7 +174,6 @@ fi
 # Activate zsh
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to activate zsh? (y,n) ' ZSH
 if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
-    # activate zsh shell
     echo -e "$CNT - ZSH, Engage!"
     chsh -s $(which zsh)
 fi
