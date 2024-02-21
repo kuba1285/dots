@@ -63,7 +63,7 @@ home_symbol = ' ~ ' # nf-fa-home
 style = 'fg:#FFFFFF bg:blue'
 read_only = ' 󰌾 ' # nf-md-lock
 read_only_style = 'fg:red bg:blue'
-format = '[$path ]($style)[$read_only]($read_only_style)'
+format = '[$path]($style)[$read_only]($read_only_style)'
 
 [git_branch]
 symbol = '  ' # nf-fa-github_alt, nf-fa-code_fork
@@ -73,7 +73,7 @@ style = 'fg:white bg:blue'
 format = '[  $symbol$branch(:$remote_branch)]($style)' # nf-pl-left_soft_divider
 
 [git_status]
-style = 'fg:white bg:blue'
+style = 'fg:yellow bg:blue'
 conflicted = '='
 ahead = '⇡${count}'
 behind = '⇣${count}'
@@ -87,9 +87,9 @@ deleted = '✘'
 format = '([\[$all_status$ahead_behind\]]($style))'
 
 [git_metrics]
-added_style = 'fg:white bg:green'
-deleted_style = 'fg:white bg:red'
-format = '[+$added/-$deleted]($deleted_style)'
+added_style = 'fg:black bg:blue'
+deleted_style = 'fg:red bg:blue'
+format = '[+$added]($deleted_style)[/-$deleted ]($deleted_style)'
 disabled = false
 
 [fill]
