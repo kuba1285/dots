@@ -117,6 +117,13 @@ if [ ! -f /sbin/yay ]; then
     fi
 fi
 
+# find the Nvidia GPU
+if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
+    ISNVIDIA=true
+else
+    ISNVIDIA=false
+fi
+
 ### Install listed pacakges ####
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install the packages? (y,n) ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
@@ -127,13 +134,6 @@ fi
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install custom applications from a list? (y,n) ' CUSTOM_APPS
 if [[ $CUSTOM_APPS == "Y" || $CUSTOM_APPS == "y" ]]; then
     install_list $LISTCUSTOM 
-fi
-
-# find the Nvidia GPU
-if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
-    ISNVIDIA=true
-else
-    ISNVIDIA=false
 fi
 
 # Setup Nvidia if it was found
@@ -183,7 +183,7 @@ fi
 ### Install the starship shell ###
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to activate zsh? (y,n) ' ZSH
 if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
-    # install zsh shell
+    # activate zsh shell
     echo -e "$CNT - ZSH, Engage!"
     chsh -s $(which zsh)
 fi
