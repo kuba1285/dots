@@ -175,6 +175,16 @@ if [[ $CUSTOM_APPS == "Y" || $CUSTOM_APPS == "y" ]]; then
     install_list $LISTCUSTOM 
 fi
 
+### Install MBP audio driver ###
+read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install MBP audio driver? (y,n) ' MBP
+if [[ $MBP == "Y" || $MBP == "y" ]]; then
+    cd
+    git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
+    cd snd_hda_macbookpro/
+    #run the following command as root or with sudo
+    sudo ./install.cirrus.driver.sh &>> $INSTLOG
+fi
+
 ### Copy Config Files ###
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
@@ -226,16 +236,6 @@ if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
     # install zsh shell
     echo -e "$CNT - ZSH, Engage!"
     chsh -s $(which zsh)
-fi
-
-### Install MBP audio driver ###
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install MBP audio driver? (y,n) ' MBP
-if [[ $MBP == "Y" || $MBP == "y" ]]; then
-    cd
-    git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
-    cd snd_hda_macbookpro/
-    #run the following command as root or with sudo
-    sudo ./install.cirrus.driver.sh &>> $INSTLOG
 fi
 
 ### Write files ###
