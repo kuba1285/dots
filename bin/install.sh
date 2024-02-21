@@ -227,7 +227,9 @@ yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install MBP audio driver? (y,n) ' MBP
 if [[ $MBP == "Y" || $MBP == "y" ]]; then
     cd
+    echo -en "$CNT - Now installing."
     git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
+    show_progress $!
     cd snd_hda_macbookpro/
     # run the following command as root or with sudo
     sudo ./install.cirrus.driver.sh &>> $INSTLOG
