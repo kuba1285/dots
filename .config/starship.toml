@@ -73,7 +73,7 @@ style = 'fg:#FFFFFF bg:blue'
 format = '[  $symbol$branch(:$remote_branch)]($style)' # nf-pl-left_soft_divider
 
 [git_status]
-style = 'fg:yellow bg:blue'
+style = 'fg:#FFFFFF bg:blue'
 conflicted = '='
 ahead = '⇡${count}'
 behind = '⇣${count}'
@@ -87,9 +87,9 @@ deleted = '✘'
 format = '([\[$all_status$ahead_behind\]]($style))'
 
 [git_metrics]
-added_style = 'fg:black bg:blue'
-deleted_style = 'fg:red bg:blue'
-format = '[+$added]($deleted_style)[/-$deleted ]($deleted_style)'
+added_style = 'fg:#00FF00 bg:blue'
+deleted_style = 'fg:#FF0000 bg:blue'
+format = '[+$added]($added_style)[/-$deleted ]($deleted_style)'
 disabled = false
 
 [fill]
