@@ -49,7 +49,6 @@ python-pywalfox
 python-pywayland
 network-manager-applet
 visual-studio-code-bin
-firefox
 neofetch
 gvfs 
 thunar-archive-plugin 
