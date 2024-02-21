@@ -10,6 +10,6 @@ swipe:
       command: hyprctl activewindow | grep -E "google-chrome|firefox|thunar" && echo key ctrl+w | dotool
 
 threshold:
-  swipe: 0.8 
+  swipe: 0.8
 interval:
-  swipe: 1.8
+  swipe: 2.0
