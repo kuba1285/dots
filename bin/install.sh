@@ -15,6 +15,7 @@ INSTLOG="install.log"
 LISTAPP="$BIN/list-app"
 LISTCUSTOM="$BIN/list-custom"
 LISTNVIDIA="$BIN/list-nvidia"
+
 ######
 
 # function that would show a progress bar to the user
@@ -73,7 +74,7 @@ else
     exit
 fi
 
-### Disable wifi powersave mode ###
+# Disable wifi powersave mode
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to disable WiFi powersave? (y,n) ' WIFI
 if [[ $WIFI == "Y" || $WIFI == "y" ]]; then
     LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
@@ -83,7 +84,7 @@ if [[ $WIFI == "Y" || $WIFI == "y" ]]; then
     sleep 2
     sudo systemctl restart NetworkManager &>> $INSTLOG
     
-    #wait for services to restore (looking at you DNS)
+    # wait for services to restore (looking at you DNS)
     for i in {1..6} 
     do
         echo -n "."
@@ -94,7 +95,7 @@ if [[ $WIFI == "Y" || $WIFI == "y" ]]; then
     echo -e "$COK - NetworkManager restart completed."
 fi
 
-#### Check for package manager ####
+# Check for package manager
 if [ ! -f /sbin/yay ]; then  
     echo -en "$CNT - Configuering yay."
     git clone https://aur.archlinux.org/yay.git &>> $INSTLOG
@@ -124,7 +125,7 @@ else
     ISNVIDIA=false
 fi
 
-### Install listed pacakges ####
+# Install listed pacakges
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install the packages? (y,n) ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
     echo -e "$CNT - Installing needed components, this may take a while..."
@@ -151,7 +152,7 @@ if [[ "$ISNVIDIA" == true ]]; then
     # Install the correct hyprland version
     echo -e "$CNT - Installing Hyprland, this may take a while..."
 
-    #check for hyprland and remove it so the -nvidia package can be installed
+    # check for hyprland and remove it so the -nvidia package can be installed
     if yay -Q hyprland &>> /dev/null ; then
         yay -R --noconfirm hyprland &>> $INSTLOG &
         install_software hyprland-nvidia
@@ -160,17 +161,17 @@ if [[ "$ISNVIDIA" == true ]]; then
     fi
 fi
 
-### Install MBP audio driver ###
+# Install MBP audio driver
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install MBP audio driver? (y,n) ' MBP
 if [[ $MBP == "Y" || $MBP == "y" ]]; then
     cd
     git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
     cd snd_hda_macbookpro/
-    #run the following command as root or with sudo
+    # run the following command as root or with sudo
     sudo ./install.cirrus.driver.sh &>> $INSTLOG
 fi
 
-### Copy Config Files ###
+# Copy Config Files
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Copying config files..."
@@ -180,7 +181,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e '\neval "$(starship init zsh)"' >> ~/.zshrc
 fi
 
-### Install the starship shell ###
+# Install the starship shell
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to activate zsh? (y,n) ' ZSH
 if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
     # activate zsh shell
@@ -237,7 +238,7 @@ source $BIN/write.sh
 sudo gpasswd -a $USER input
 fc-cache -fv &>> $INSTLOG
 
-### Script is done ###
+# Script is done
 echo -e "$CNT - Script had completed!"
 if [[ "$ISNVIDIA" == true ]]; then 
     echo -e "$CAT - Since we attempted to setup an Nvidia GPU the script will now end and you should reboot.
