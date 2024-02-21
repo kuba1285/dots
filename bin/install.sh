@@ -161,16 +161,6 @@ if [[ "$ISNVIDIA" == true ]]; then
     fi
 fi
 
-# Install MBP audio driver
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install MBP audio driver? (y,n) ' MBP
-if [[ $MBP == "Y" || $MBP == "y" ]]; then
-    cd
-    git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
-    cd snd_hda_macbookpro/
-    # run the following command as root or with sudo
-    sudo ./install.cirrus.driver.sh &>> $INSTLOG
-fi
-
 # Copy Config Files
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
@@ -181,7 +171,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e '\neval "$(starship init zsh)"' >> ~/.zshrc
 fi
 
-# Install the starship shell
+# Activate zsh
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to activate zsh? (y,n) ' ZSH
 if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
     # activate zsh shell
@@ -193,26 +183,26 @@ fi
 chmod +x ~/.config/hypr/scripts/*
 
 # stage the .desktop file
-sudo cp src/hyprland.desktop /usr/share/wayland-sessions/
+sudo cp $PARENT/src/hyprland.desktop /usr/share/wayland-sessions/
 
 # add VScode extensions
 echo -e "$CNT - Adding VScode Extensions"
 mkdir ~/.vscode
-tar -xf src/extensions.tar.gz -C ~/.vscode/
+tar -xf $PARENT/src/extensions.tar.gz -C ~/.vscode/
 
 # Font install for Rofi 
 echo -e "$CNT - Adding Fonts for Rofi"
 sudo mkdir $HOME/.local/share/fonts
-sudo cp src/Icomoon-Feather.ttf $HOME/.local/share/fonts
+sudo cp $PARENT/src/Icomoon-Feather.ttf $HOME/.local/share/fonts
 
 # Copy the SDDM theme
 echo -e "$CNT - Setting up the login screen."
-sudo tar -xf src/sugar-candy.tar.gz -C /usr/share/sddm/themes/
+sudo tar -xf $PARENT/sugar-candy.tar.gz -C /usr/share/sddm/themes/
 sudo chown -R $USER:$USER /usr/share/sddm/themes/sugar-candy
 sudo mkdir /etc/sddm.conf.d
 echo -e "[Theme]\nCurrent=sugar-candy" | sudo tee -a /etc/sddm.conf.d/10-theme.conf &>> $INSTLOG
-WLDIR=/usr/share/wayland-sessions
 
+WLDIR=/usr/share/wayland-sessions
 if [ -d "$WLDIR" ]; then
     echo -e "$COK - $WLDIR found"
 else
@@ -234,6 +224,16 @@ sleep 2
 echo -e "$CNT - Cleaning out conflicting xdg portals..."
 yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
 
+# Install MBP audio driver
+read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install MBP audio driver? (y,n) ' MBP
+if [[ $MBP == "Y" || $MBP == "y" ]]; then
+    cd
+    git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
+    cd snd_hda_macbookpro/
+    # run the following command as root or with sudo
+    sudo ./install.cirrus.driver.sh &>> $INSTLOG
+fi
+
 source $BIN/write.sh
 sudo gpasswd -a $USER input
 fc-cache -fv &>> $INSTLOG
@@ -243,12 +243,5 @@ echo -e "$CNT - Script had completed!"
 if [[ "$ISNVIDIA" == true ]]; then 
     echo -e "$CAT - Since we attempted to setup an Nvidia GPU the script will now end and you should reboot.
     Please type 'reboot' at the prompt and hit Enter when ready."
-    exit
-fi
-
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to start Hyprland now? (y,n) ' HYP
-if [[ $HYP == "Y" || $HYP == "y" ]]; then
-    exec sudo systemctl start sddm &>> $INSTLOG
-else
     exit
 fi
