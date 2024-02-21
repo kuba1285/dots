@@ -227,6 +227,17 @@ if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
     echo -e "$CNT - ZSH, Engage!"
     chsh -s $(which zsh)
 fi
+
+### Install MBP audio driver ###
+read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install MBP audio driver? (y,n) ' MBP
+if [[ $MBP == "Y" || $MBP == "y" ]]; then
+    cd
+    git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
+    cd snd_hda_macbookpro/
+    #run the following command as root or with sudo
+    sudo ./install.cirrus.driver.sh &>> $INSTLOG
+fi
+
 ### Write files ###
 grep -q "export XDG_CONFIG_HOME=$HOME/.config/" ~/.zshrc ||
 mkdir -p $HOME/.config/ $HOME/.cache/ $HOME/.local/share/ $HOME/.local/state/
