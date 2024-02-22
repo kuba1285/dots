@@ -129,7 +129,7 @@ if [ ! -f /sbin/yay ] ; then
 fi
 
 # find the Nvidia GPU
-if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia; then
+if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia ; then
     ISNVIDIA=true
 else
     ISNVIDIA=false
