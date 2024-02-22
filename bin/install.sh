@@ -24,7 +24,7 @@ SERVICES=(
 
 # function that would show a progress bar to the user
 show_progress() {
-    while ps | grep $1 &> /dev/null; do
+    while ps | grep $1 &> /dev/null ; do
         echo -n "."
         sleep 2
     done
@@ -56,9 +56,9 @@ install_software() {
 
 # function for install app from list
 install_list() {
-    if [[ -f "$1" ]]; then
+    if [[ -f "$1" ]] ; then
         echo -e "$CNT - Installing applications from $1..."
-        while IFS= read -r app; do
+        while IFS= read -r app ; do
             install_software "$app"
         done < "$1"
     else
@@ -68,7 +68,7 @@ install_list() {
 
 wait_yn(){
 	YN="xxx"
-	while [ $YN != 'y' ] && [ $YN != 'n' ]; do
+	while [ $YN != 'y' ] && [ $YN != 'n' ] ; do
 		read -p "$1 [y/n]" YN
 	done
 }
@@ -106,13 +106,13 @@ LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
 fi
 
 # Check for package manager
-if [ ! -f /sbin/yay ]; then  
+if [ ! -f /sbin/yay ] ; then  
     echo -en "$CNT - Configuering yay."
     git clone https://aur.archlinux.org/yay.git &>> $INSTLOG
     cd yay
     makepkg -si --noconfirm &>> $INSTLOG &
     show_progress $!
-    if [ -f /sbin/yay ]; then
+    if [ -f /sbin/yay ] ; then
         echo -e "$COK - yay configured"
         cd ..
         
@@ -148,7 +148,7 @@ install_list $LISTCUSTOM
 fi
 
 # Setup Nvidia if it was found
-if [[ "$ISNVIDIA" == true ]]; then
+if [[ "$ISNVIDIA" == true ]] ; then
     echo -e "$CNT - Nvidia GPU support setup stage, this may take a while..."
     install_list $LISTNVIDIA
 
@@ -195,7 +195,7 @@ chmod +x ~/.config/hypr/scripts/*
 
 # stage the .desktop file
 WLDIR=/usr/share/wayland-sessions
-if [ ! -d "$WLDIR" ]; then
+if [ ! -d "$WLDIR" ] ; then
     sudo mkdir $WLDIR
 fi 
 sudo cp $PARENT/src/hyprland.desktop /usr/share/wayland-sessions/
@@ -222,7 +222,7 @@ echo -e "$CNT - Cleaning out conflicting xdg portals..."
 yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
 
 # Enable services
-for SERVICE in ${SERVICES[@]}; do
+for SERVICE in ${SERVICES[@]} ; do
     sudo systemctl enable SERVICE --now &>> $INSTLOG
     sleep 2
 done
