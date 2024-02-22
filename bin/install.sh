@@ -78,7 +78,7 @@ clear
 # give the user an option to exit out
 wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to start with the install?'
 if [[ $YN = y ]] ; then
-echo -e "$CNT - Setup starting..."
+    echo -e "$CNT - Setup starting..."
     sudo touch /tmp/hyprv.tmp
 else
     echo -e "$CNT - This script will now exit, no changes were made to your system."
@@ -144,7 +144,7 @@ fi
 
 wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to install custom applications from a list?'
 if [[ $YN = y ]] ; then
-install_list $LISTCUSTOM
+    install_list $LISTCUSTOM
 fi
 
 # Setup Nvidia if it was found
@@ -177,7 +177,7 @@ fi
 # Copy Config Files
 wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to copy config files?'
 if [[ $YN = y ]] ; then
-echo -e "$CNT - Copying config files..."
+    echo -e "$CNT - Copying config files..."
 
     # copy the configs directory
     cp -rT $PARENT/. ~/ &>> $INSTLOG
@@ -186,7 +186,7 @@ fi
 # Activate zsh
 wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to activate zsh?'
 if [[ $YN = y ]] ; then
-echo -e "$CNT - ZSH, Engage!"
+    echo -e "$CNT - ZSH, Engage!"
     chsh -s $(which zsh)
 fi
 
