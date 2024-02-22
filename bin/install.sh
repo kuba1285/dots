@@ -165,6 +165,11 @@ if [[ "$ISNVIDIA" == true ]]; then
     fi
 fi
 
+# desktop environment forking
+#case "$(neofetch de)" in  
+#    *Aqua* ) echo aqua ;;
+#esac
+
 # Copy Config Files
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
