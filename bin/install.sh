@@ -20,7 +20,6 @@ SERVICES=(
     tlp
     mbpfan
 )
-
 ######
 
 # function that would show a progress bar to the user
