@@ -24,8 +24,7 @@ SERVICES=(
 
 # function that would show a progress bar to the user
 show_progress() {
-    while ps | grep $1 &> /dev/null;
-    do
+    while ps | grep $1 &> /dev/null; do
         echo -n "."
         sleep 2
     done
@@ -97,8 +96,7 @@ LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
     sudo systemctl restart NetworkManager &>> $INSTLOG
     
     # wait for services to restore (looking at you DNS)
-    for i in {1..6} 
-    do
+    for i in {1..6} ; do
         echo -n "."
         sleep 1
     done
