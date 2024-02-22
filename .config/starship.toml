@@ -5,6 +5,8 @@
 # nf-pl-right_hard_divider
 # nf-ple-right_half_circle_thick
 
+command_timeout = 500
+
 format = """
 [╭─](fg:#444444)\
 $os\
