@@ -10,7 +10,7 @@ CWR="[\e[1;35mWARNING\e[0m]"
 # Define variables
 BIN=$(cd $(dirname $0); pwd)
 PARENT=$(cd $(dirname $0)/../; pwd)
-INSTLOG="install.log"
+INSTLOG="$BIN/install.log"
 LISTAPP="$BIN/list-app"
 LISTCUSTOM="$BIN/list-custom"
 LISTNVIDIA="$BIN/list-nvidia"
@@ -106,7 +106,7 @@ if [ ! -f /sbin/yay ]; then
     echo -en "$CNT - Configuering yay."
     git clone https://aur.archlinux.org/yay.git &>> $INSTLOG
     cd yay
-    makepkg -si --noconfirm &>> ../$INSTLOG &
+    makepkg -si --noconfirm &>> $INSTLOG &
     show_progress $!
     if [ -f /sbin/yay ]; then
         echo -e "$COK - yay configured"
