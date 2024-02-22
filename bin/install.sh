@@ -69,8 +69,7 @@ install_list() {
 
 wait_yn(){
 	YN="xxx"
-	while [ $YN != 'y' ] && [ $YN != 'n' ]
-		do
+	while [ $YN != 'y' ] && [ $YN != 'n' ]; do
 		read -p "$1 [y/n]" YN
 	done
 }
