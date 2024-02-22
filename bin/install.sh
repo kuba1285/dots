@@ -15,6 +15,11 @@ INSTLOG="install.log"
 LISTAPP="$BIN/list-app"
 LISTCUSTOM="$BIN/list-custom"
 LISTNVIDIA="$BIN/list-nvidia"
+SERVICES=(
+    sddm
+    bluetooth
+    tlp
+)
 
 ######
 
@@ -134,7 +139,7 @@ fi
 
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install custom applications from a list? (y,n) ' CUSTOM_APPS
 if [[ $CUSTOM_APPS == "Y" || $CUSTOM_APPS == "y" ]]; then
-    install_list $LISTCUSTOM 
+    install_list $LISTCUSTOM
 fi
 
 # Setup Nvidia if it was found
@@ -156,8 +161,6 @@ if [[ "$ISNVIDIA" == true ]]; then
     if yay -Q hyprland &>> /dev/null ; then
         yay -R --noconfirm hyprland &>> $INSTLOG &
         install_software hyprland-nvidia
-    else
-        install_software hyprland
     fi
 fi
 
@@ -167,8 +170,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Copying config files..."
     # copy the configs directory
     cp -rT $PARENT/. ~/ &>> $INSTLOG
-    echo -e '\neval "$(starship init bash)"' >> ~/.bashrc
-    echo -e '\neval "$(starship init zsh)"' >> ~/.zshrc
 fi
 
 # Activate zsh
@@ -182,6 +183,10 @@ fi
 chmod +x ~/.config/hypr/scripts/*
 
 # stage the .desktop file
+WLDIR=/usr/share/wayland-sessions
+if [ ! -d "$WLDIR" ]; then
+    sudo mkdir $WLDIR
+fi 
 sudo cp $PARENT/src/hyprland.desktop /usr/share/wayland-sessions/
 
 # add VScode extensions
@@ -199,29 +204,17 @@ echo -e "$CNT - Setting up the login screen."
 sudo tar -xf $PARENT/src/sugar-candy.tar.gz -C /usr/share/sddm/themes/
 sudo chown -R $USER:$USER /usr/share/sddm/themes/sugar-candy
 sudo mkdir /etc/sddm.conf.d
-echo -e "[Theme]\nCurrent=sugar-candy" | sudo tee -a /etc/sddm.conf.d/10-theme.conf &>> $INSTLOG
-
-WLDIR=/usr/share/wayland-sessions
-if [ -d "$WLDIR" ]; then
-    echo -e "$COK - $WLDIR found"
-else
-    echo -e "$CWR - $WLDIR NOT found, creating..."
-    sudo mkdir $WLDIR
-fi
-
-# Start the bluetooth service
-echo -e "$CNT - Starting the Bluetooth Service..."
-sudo systemctl enable --now bluetooth.service &>> $INSTLOG
-sleep 2
-
-# Enable the sddm login manager service
-echo -e "$CNT - Enabling the SDDM Service..."
-sudo systemctl enable sddm &>> $INSTLOG
-sleep 2
+echo -e "[Theme]\nCurrent=sugar-candy" | sudo tee -a /etc/sddm.conf.d/10-theme.conf
 
 # Clean out other portals
 echo -e "$CNT - Cleaning out conflicting xdg portals..."
 yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
+
+# Enable services
+for SERVICE in ${SERVICES[@]}; do
+    sudo systemctl enable SERVICE --now &>> $INSTLOG
+    sleep 2
+done
 
 # Install MBP audio driver
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install MBP audio driver? (y,n) ' MBP
@@ -232,6 +225,7 @@ if [[ $MBP == "Y" || $MBP == "y" ]]; then
     cd snd_hda_macbookpro/
     # run the following command as root or with sudo
     sudo ./install.cirrus.driver.sh &>> $INSTLOG
+    show_progress $!
 fi
 
 source $BIN/write.sh
@@ -240,8 +234,3 @@ fc-cache -fv &>> $INSTLOG
 
 # Script is done
 echo -e "$CNT - Script had completed!"
-if [[ "$ISNVIDIA" == true ]]; then 
-    echo -e "$CAT - Since we attempted to setup an Nvidia GPU the script will now end and you should reboot.
-    Please type 'reboot' at the prompt and hit Enter when ready."
-    exit
-fi
