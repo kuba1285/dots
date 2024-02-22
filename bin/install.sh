@@ -19,6 +19,7 @@ SERVICES=(
     sddm
     bluetooth
     tlp
+    mbpfan
 )
 
 ######
