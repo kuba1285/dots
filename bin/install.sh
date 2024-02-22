@@ -44,6 +44,7 @@ install_software() {
         echo -en "$CNT - Now installing $1 ."
         yay -S --noconfirm $1 &>> $INSTLOG &
         show_progress $!
+        
         # test to make sure package installed
         if yay -Q $1 &>> /dev/null ; then
             echo -e "$COK - $1 was installed."
@@ -168,6 +169,7 @@ fi
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Copying config files..."
+
     # copy the configs directory
     cp -rT $PARENT/. ~/ &>> $INSTLOG
 fi
@@ -223,6 +225,7 @@ if [[ $MBP == "Y" || $MBP == "y" ]]; then
     cd
     git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
     cd snd_hda_macbookpro/
+
     # run the following command as root or with sudo
     sudo ./install.cirrus.driver.sh &>> $INSTLOG
     show_progress $!
