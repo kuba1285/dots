@@ -223,7 +223,7 @@ yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
 
 # Enable services
 for SERVICE in ${SERVICES[@]} ; do
-    sudo systemctl enable SERVICE --now &>> $INSTLOG
+    sudo systemctl enable $SERVICE --now &>> $INSTLOG
     sleep 2
 done
 
