@@ -116,12 +116,12 @@ utc_time_offset = '+9'
 
 [shell]
 disabled = false
-bash_indicator = '[    BSH-MODE ](aqua)'
-zsh_indicator = '[    ZSH-MODE ](fuchsia)'
-nu_indicator = '[    NSH-MODE ](blue)'
-fish_indicator = '[    FSH-MODE ](yellow)'
-elvish_indicator = '[    ESH-MODE ](lime)'
-xonsh_indicator = '[    XSH-MODE ](red)'
+bash_indicator = '[    BSH-MODE](aqua)'
+zsh_indicator = '[    ZSH-MODE](fuchsia)'
+nu_indicator = '[    NSH-MODE](blue)'
+fish_indicator = '[    FSH-MODE](yellow)'
+elvish_indicator = '[    ESH-MODE](lime)'
+xonsh_indicator = '[    XSH-MODE](red)'
 
 [lua]
 symbol = "" # nf-seti-lua
