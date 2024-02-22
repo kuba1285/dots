@@ -164,7 +164,7 @@ if [[ "$ISNVIDIA" == true ]]; then
     fi
 fi
 
-# desktop environment forking
+# forking by desktop environment
 #case "$(neofetch de)" in  
 #    *Aqua* ) echo aqua ;;
 #esac
