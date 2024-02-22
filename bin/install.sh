@@ -67,12 +67,20 @@ install_list() {
     fi
 }
 
+wait_yn(){
+	YN="xxx"
+	while [ $YN != 'y' ] && [ $YN != 'n' ]
+		do
+		read -p "$1 [y/n]" YN
+	done
+}
+
 clear
 
 # give the user an option to exit out
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to start with the install (y,n) ' CONTINST
-if [[ $CONTINST == "Y" || $CONTINST == "y" ]]; then
-    echo -e "$CNT - Setup starting..."
+wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to start with the install?'
+if [[ $YN = y ]] ; then
+echo -e "$CNT - Setup starting..."
     sudo touch /tmp/hyprv.tmp
 else
     echo -e "$CNT - This script will now exit, no changes were made to your system."
@@ -80,9 +88,9 @@ else
 fi
 
 # Disable wifi powersave mode
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to disable WiFi powersave? (y,n) ' WIFI
-if [[ $WIFI == "Y" || $WIFI == "y" ]]; then
-    LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
+wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to disable WiFi powersave?'
+if [[ $YN = y ]] ; then
+LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
     echo -e "$CNT - The following file has been created $LOC.\n"
     echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC &>> $INSTLOG
     echo -en "$CNT - Restarting NetworkManager service, Please wait."
@@ -131,15 +139,15 @@ else
 fi
 
 # Install listed pacakges
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install the packages? (y,n) ' INST
-if [[ $INST == "Y" || $INST == "y" ]]; then
-    echo -e "$CNT - Installing needed components, this may take a while..."
+wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to install the packages?'
+if [[ $YN = y ]] ; then
+echo -e "$CNT - Installing needed components, this may take a while..."
     install_list $LISTAPP
 fi
 
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install custom applications from a list? (y,n) ' CUSTOM_APPS
-if [[ $CUSTOM_APPS == "Y" || $CUSTOM_APPS == "y" ]]; then
-    install_list $LISTCUSTOM
+wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to install custom applications from a list?'
+if [[ $YN = y ]] ; then
+install_list $LISTCUSTOM
 fi
 
 # Setup Nvidia if it was found
@@ -170,18 +178,18 @@ fi
 #esac
 
 # Copy Config Files
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
-if [[ $CFG == "Y" || $CFG == "y" ]]; then
-    echo -e "$CNT - Copying config files..."
+wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to copy config files?'
+if [[ $YN = y ]] ; then
+echo -e "$CNT - Copying config files..."
 
     # copy the configs directory
     cp -rT $PARENT/. ~/ &>> $INSTLOG
 fi
 
 # Activate zsh
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to activate zsh? (y,n) ' ZSH
-if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
-    echo -e "$CNT - ZSH, Engage!"
+wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to activate zsh?'
+if [[ $YN = y ]] ; then
+echo -e "$CNT - ZSH, Engage!"
     chsh -s $(which zsh)
 fi
 
@@ -223,9 +231,9 @@ for SERVICE in ${SERVICES[@]}; do
 done
 
 # Install MBP audio driver
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install MBP audio driver? (y,n) ' MBP
-if [[ $MBP == "Y" || $MBP == "y" ]]; then
-    echo -e "$CNT - Installing driver, this may take a while..."
+wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to install MBP audio driver?'
+if [[ $YN = y ]] ; then
+echo -e "$CNT - Installing driver, this may take a while..."
     cd
     git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
     cd snd_hda_macbookpro/
