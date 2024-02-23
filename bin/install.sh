@@ -230,7 +230,7 @@ done
 # Install MBP audio driver
 wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to install MBP audio driver?'
 if [[ $YN = y ]] ; then
-echo -e "$CNT - Installing driver, this may take a while..."
+    echo -e "$CNT - Installing driver, this may take a while..."
     cd
     git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
     cd snd_hda_macbookpro/
