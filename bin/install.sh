@@ -190,11 +190,6 @@ echo -e "${CYAN}NOTE${RESET} - Adding VScode Extensions"
 mkdir ~/.vscode
 tar -xf $PARENT/src/extensions.tar.gz -C ~/.vscode/
 
-# Font install for Rofi 
-echo -e "${CYAN}NOTE${RESET} - Adding Fonts for Rofi"
-sudo mkdir $HOME/.local/share/fonts
-sudo cp $PARENT/src/Icomoon-Feather.ttf $HOME/.local/share/fonts
-
 # Copy the SDDM theme
 echo -e "${CYAN}NOTE${RESET} - Setting up the login screen."
 sudo tar -xf $PARENT/src/sugar-candy.tar.gz -C /usr/share/sddm/themes/
