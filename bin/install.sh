@@ -197,13 +197,6 @@ if [[ $YN = y ]] ; then
     cp -rT $PARENT/. ~/ &>> $INSTLOG
 fi
 
-# Activate zsh
-wait_yn "${YELLOW}ACITION${RESET} - Would you like to activate zsh?"
-if [[ $YN = y ]] ; then
-    echo -e "${CYAN}NOTE${RESET} - ZSH, Engage!"
-    chsh -s $(which zsh)
-fi
-
 # make files exec
 chmod +x ~/.config/hypr/scripts/*
 
