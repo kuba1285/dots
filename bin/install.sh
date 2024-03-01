@@ -15,7 +15,7 @@ SERVICES=(
 )
 
 # set some colors
-set_colors() {
+function set_colors() {
     if [ -t 1 ]; then
         RED=$(tput setaf 1)
         GREEN=$(tput setaf 2)
@@ -34,7 +34,7 @@ set_colors() {
 }
 
 # function that would show a progress bar to the user
-show_progress() {
+function show_progress() {
     while ps | grep $1 &> /dev/null ; do
         echo -n "."
         sleep 2
@@ -44,7 +44,7 @@ show_progress() {
 }
 
 # function that will test for a package and if not found it will attempt to install it
-install_software() {
+function install_software() {
     # First lets see if the package is there
     if yay -Q $1 &>> /dev/null ; then
         echo  "${GREEN}OK${RESET} - $1 is already installed."
@@ -66,7 +66,7 @@ install_software() {
 }
 
 # function for install app from list
-install_list() {
+function install_list() {
     if [[ -f "$1" ]] ; then
         echo "${CYAN}NOTE${RESET} - Installing applications from $1..."
         while IFS= read -r app ; do
@@ -77,7 +77,7 @@ install_list() {
     fi
 }
 
-wait_yn(){
+function wait_yn(){
     YN="xxx"
     while [ $YN != 'y' ] && [ $YN != 'n' ] ; do
         read -p "$1 [y/n]" YN
