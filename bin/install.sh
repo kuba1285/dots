@@ -98,26 +98,6 @@ else
     exit
 fi
 
-# Disable wifi powersave mode
-wait_yn "${YELLOW}ACITION${RESET} - Would you like to disable WiFi powersave?"
-if [[ $YN = y ]] ; then
-LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
-    echo "${CYAN}NOTE${RESET} - The following file has been created $LOC.\n"
-    echo "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC &>> $INSTLOG
-    echo -n "${CYAN}NOTE${RESET} - Restarting NetworkManager service, Please wait."
-    sleep 2
-    sudo systemctl restart NetworkManager &>> $INSTLOG
-    
-    # wait for services to restore (looking at you DNS)
-    for i in {1..6} ; do
-        echo -n "."
-        sleep 1
-    done
-    echo -n "Done!\n"
-    sleep 2
-    echo "${GREEN}OK${RESET} - NetworkManager restart completed."
-fi
-
 # Check for package manager
 if [ ! -f /sbin/yay ] ; then  
     echo -n "${CYAN}NOTE${RESET} - Configuering yay."
