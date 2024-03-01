@@ -60,7 +60,7 @@ install_software() {
             echo -e "${GREEN}OK${RESET} - $1 was installed."
         else
             # if this is hit then a package is missing, exit to review log
-            echo -e "${RED}ERROR${RESET} - $1 install had failed, please check the install.log"
+            echo -e "${RED}ERROR${RESET} - $1 install had failed, please check install.log"
             exit
         fi
     fi
