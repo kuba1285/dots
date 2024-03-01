@@ -42,6 +42,7 @@ if [[ $X11 == "Y" || $X11 == "y" ]]; then
   Option "TearFree" "true"
   EndSection
 EOF
+
   grep -q "xinput set-prop 11 318 1" ~/.xsessionrc ||
   cat << EOF | tee -a ~/.xsessionrc
   xinput set-prop 11 318 1
