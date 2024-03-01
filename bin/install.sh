@@ -13,7 +13,6 @@ SERVICES=(
     tlp
     mbpfan
 )
-######
 
 # set some colors
 set_colors() {
