@@ -1,5 +1,21 @@
 #!/bin/bash
 
+# Define variables
+BIN=$(cd $(dirname $0); pwd)
+PARENT=$(cd $(dirname $0)/../; pwd)
+INSTLOG="$BIN/install.log"
+LISTAPP="$BIN/list-app"
+LISTCUSTOM="$BIN/list-custom"
+LISTNVIDIA="$BIN/list-nvidia"
+SERVICES=(
+    sddm
+    bluetooth
+    tlp
+    mbpfan
+)
+######
+
+# set some colors
 set_color() {
     if [ -t 1 ]; then
         RED=$(printf '\033[31m')
@@ -17,21 +33,6 @@ set_color() {
         RESET=""
     fi
 }
-
-# Define variables
-BIN=$(cd $(dirname $0); pwd)
-PARENT=$(cd $(dirname $0)/../; pwd)
-INSTLOG="$BIN/install.log"
-LISTAPP="$BIN/list-app"
-LISTCUSTOM="$BIN/list-custom"
-LISTNVIDIA="$BIN/list-nvidia"
-SERVICES=(
-    sddm
-    bluetooth
-    tlp
-    mbpfan
-)
-######
 
 # function that would show a progress bar to the user
 show_progress() {
