@@ -8,7 +8,7 @@ echo -e "WLR_NO_HARDWARE_CURSORS=1" | sudo tee -a /etc/environment
 if yay -Q hyprland &>> /dev/null ; then
 
   # Install the correct hyprland version
-  yay -R --noconfirm hyprland &>> $INSTLOG &
-  yay -S hyprland-nvidia
+  yay -R --noconfirm hyprland &>> $INSTLOG
+  yay -S --noconfirm hyprland-nvidia &>> $INSTLOG
   echo -e "\nsource = ~/.config/hypr/nvidia.conf" >> ~/.config/hypr/hyprland.conf
 fi
