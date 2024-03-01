@@ -32,8 +32,7 @@ Icon=
 Type=Application
 EOF
 
-read -rep $'[\e[1;33mACTION\e[0m] - Would you like to write X11 config? (y,n) ' X11
-if [[ $X11 == "Y" || $X11 == "y" ]]; then
+if [[ $XDG_SESSION_TYPE == xorg ]]; then
   grep -q "TearFree" /etc/X11/xorg.conf.d/20-intel.conf ||
   cat << EOF | sudo tee -a /etc/X11/xorg.conf.d/20-intel.conf
   GSection "Device"
