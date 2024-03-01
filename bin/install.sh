@@ -213,7 +213,7 @@ WLDIR=/usr/share/wayland-sessions
 if [ ! -d "$WLDIR" ] ; then
     sudo mkdir $WLDIR
 fi 
-sudo cp $PARENT/src/hyprland.desktop /usr/share/wayland-sessions/
+sudo cp $PARENT/src/hyprland.desktop $WLDIR
 
 # add VScode extensions
 echo -e "${CYAN}NOTE${RESET} - Adding VScode Extensions"
