@@ -17,12 +17,12 @@ SERVICES=(
 # set some colors
 set_colors() {
     if [ -t 1 ]; then
-        RED=$(printf '\033[31m')
-        GREEN=$(printf '\033[32m')
-        YELLOW=$(printf '\033[33m')
-        CYAN=$(printf '\033[36m')
-        BOLD=$(printf '\033[1m')
-        RESET=$(printf '\033[m')
+        RED=$(tput setaf 1)
+        GREEN=$(tput setaf 2)
+        YELLOW=$(tput setaf 3)
+        CYAN=$(tput setaf 6)
+        BOLD=$(tput bold)
+        RESET=$(tput sgr0)
     else
         RED=""
         GREEN=""
