@@ -141,13 +141,6 @@ if [ ! -f /sbin/yay ] ; then
     fi
 fi
 
-# find the Nvidia GPU
-if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia ; then
-    ISNVIDIA=true
-else
-    ISNVIDIA=false
-fi
-
 # Install listed pacakges
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to install the packages?"
 if [[ $YN = y ]] ; then
@@ -161,7 +154,7 @@ if [[ $YN = y ]] ; then
 fi
 
 # Setup Nvidia if it was found
-if [[ "$ISNVIDIA" == true ]] ; then
+if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia ; then
     echo -e "${CYAN}NOTE${RESET} - Nvidia GPU support setup stage, this may take a while..."
     install_list $LISTNVIDIA
 
