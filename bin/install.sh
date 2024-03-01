@@ -166,15 +166,6 @@ fi
 #    *Aqua* ) echo aqua ;;
 #esac
 
-# Copy Config Files
-wait_yn "${YELLOW}ACITION${RESET} - Would you like to copy config files?"
-if [[ $YN = y ]] ; then
-    echo -e "${CYAN}NOTE${RESET} - Copying config files..."
-
-    # copy the configs directory
-    cp -rT $PARENT/. ~/ &>> $INSTLOG
-fi
-
 # Install MBP audio driver
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to install MBP audio driver?"
 if [[ $YN = y ]] ; then
@@ -186,6 +177,15 @@ if [[ $YN = y ]] ; then
     # run the following command as root or with sudo
     sudo ./install.cirrus.driver.sh &>> $INSTLOG
     show_progress $!
+fi
+
+# Copy Config Files
+wait_yn "${YELLOW}ACITION${RESET} - Would you like to copy config files?"
+if [[ $YN = y ]] ; then
+    echo -e "${CYAN}NOTE${RESET} - Copying config files..."
+
+    # copy the configs directory
+    cp -rT $PARENT/. ~/ &>> $INSTLOG
 fi
 
 # Enable services
