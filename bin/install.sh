@@ -146,7 +146,7 @@ fi
 # Install MBP audio driver
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to install MBP audio driver?"
 if [[ $YN = y ]] ; then
-    echo "${CYAN}NOTE${RESET} - Installing driver, this may take a while..."
+    echo -n "${CYAN}NOTE${RESET} - Installing driver, this may take a while..."
     cd
     git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
     cd snd_hda_macbookpro/
