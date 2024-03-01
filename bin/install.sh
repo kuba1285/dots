@@ -1,11 +1,22 @@
 #!/bin/bash
 
-# set some colors
-CER="[\e[1;31mERROR\e[0m]"
-COK="[\e[1;32mOK\e[0m]"
-CWR="[\e[1;35mWARNING\e[0m]"
-CNT="[\e[1;36mNOTE\e[0m]"
-CAT="[\e[1;37mATTENTION\e[0m]"
+set_color() {
+    if [ -t 1 ]; then
+        RED=$(printf '\033[31m')
+        GREEN=$(printf '\033[32m')
+        YELLOW=$(printf '\033[33m')
+        CYAN=$(printf '\033[36m')
+        BOLD=$(printf '\033[1m')
+        RESET=$(printf '\033[m')
+    else
+        RED=""
+        GREEN=""
+        YELLOW=""
+        CYAN=""
+        BOLD=""
+        RESET=""
+    fi
+}
 
 # Define variables
 BIN=$(cd $(dirname $0); pwd)
@@ -36,19 +47,19 @@ show_progress() {
 install_software() {
     # First lets see if the package is there
     if yay -Q $1 &>> /dev/null ; then
-        echo -e "$COK - $1 is already installed."
+        echo -e "${GREEN}OK${RESET} - $1 is already installed."
     else
         # no package found so installing
-        echo -en "$CNT - Now installing $1 ."
+        echo -en "${CYAN}NOTE${RESET} - Now installing $1 ."
         yay -S --noconfirm $1 &>> $INSTLOG &
         show_progress $!
         
         # test to make sure package installed
         if yay -Q $1 &>> /dev/null ; then
-            echo -e "$COK - $1 was installed."
+            echo -e "${GREEN}OK${RESET} - $1 was installed."
         else
             # if this is hit then a package is missing, exit to review log
-            echo -e "$CER - $1 install had failed, please check the install.log"
+            echo -e "${RED}ERROR${RESET} - $1 install had failed, please check the install.log"
             exit
         fi
     fi
@@ -57,12 +68,12 @@ install_software() {
 # function for install app from list
 install_list() {
     if [[ -f "$1" ]] ; then
-        echo -e "$CNT - Installing applications from $1..."
+        echo -e "${CYAN}NOTE${RESET} - Installing applications from $1..."
         while IFS= read -r app ; do
             install_software "$app"
         done < "$1"
     else
-        echo -e "$CER - applications list not found: $1"
+        echo -e "${RED}ERROR${RESET} - applications list not found: $1"
     fi
 }
 
@@ -75,24 +86,25 @@ wait_yn(){
 ######
 
 clear
+set_color
 
 # give the user an option to exit out
-wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to start with the install?'
+wait_yn "${YELLOW}ACITION${RESET} - Would you like to start with the install?"
 if [[ $YN = y ]] ; then
-    echo -e "$CNT - Setup starting..."
+    echo -e "${CYAN}NOTE${RESET} - Setup starting..."
     sudo touch /tmp/hyprv.tmp
 else
-    echo -e "$CNT - This script will now exit, no changes were made to your system."
+    echo -e "${CYAN}NOTE${RESET} - This script will now exit, no changes were made to your system."
     exit
 fi
 
 # Disable wifi powersave mode
-wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to disable WiFi powersave?'
+wait_yn "${YELLOW}ACITION${RESET} - Would you like to disable WiFi powersave?"
 if [[ $YN = y ]] ; then
 LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
-    echo -e "$CNT - The following file has been created $LOC.\n"
+    echo -e "${CYAN}NOTE${RESET} - The following file has been created $LOC.\n"
     echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC &>> $INSTLOG
-    echo -en "$CNT - Restarting NetworkManager service, Please wait."
+    echo -en "${CYAN}NOTE${RESET} - Restarting NetworkManager service, Please wait."
     sleep 2
     sudo systemctl restart NetworkManager &>> $INSTLOG
     
@@ -103,28 +115,28 @@ LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
     done
     echo -en "Done!\n"
     sleep 2
-    echo -e "$COK - NetworkManager restart completed."
+    echo -e "${GREEN}OK${RESET} - NetworkManager restart completed."
 fi
 
 # Check for package manager
 if [ ! -f /sbin/yay ] ; then  
-    echo -en "$CNT - Configuering yay."
+    echo -en "${CYAN}NOTE${RESET} - Configuering yay."
     git clone https://aur.archlinux.org/yay.git &>> $INSTLOG
     cd yay
     makepkg -si --noconfirm &>> $INSTLOG &
     show_progress $!
     if [ -f /sbin/yay ] ; then
-        echo -e "$COK - yay configured"
+        echo -e "${GREEN}OK${RESET} - yay configured"
         cd ..
         
         # update the yay database
-        echo -en "$CNT - Updating yay."
+        echo -en "${CYAN}NOTE${RESET} - Updating yay."
         yay -Suy --noconfirm &>> $INSTLOG &
         show_progress $!
-        echo -e "$COK - yay updated."
+        echo -e "${GREEN}OK${RESET} - yay updated."
     else
         # if this is hit then a package is missing, exit to review log
-        echo -e "$CER - yay install failed, please check the install.log"
+        echo -e "${RED}ERROR${RESET} - yay install failed, please check the install.log"
         exit
     fi
 fi
@@ -137,20 +149,20 @@ else
 fi
 
 # Install listed pacakges
-wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to install the packages?'
+wait_yn "${YELLOW}ACITION${RESET} - Would you like to install the packages?"
 if [[ $YN = y ]] ; then
-echo -e "$CNT - Installing needed components, this may take a while..."
+echo -e "${CYAN}NOTE${RESET} - Installing needed components, this may take a while..."
     install_list $LISTAPP
 fi
 
-wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to install custom applications from a list?'
+wait_yn "${YELLOW}ACITION${RESET} - Would you like to install custom applications from a list?"
 if [[ $YN = y ]] ; then
     install_list $LISTCUSTOM
 fi
 
 # Setup Nvidia if it was found
 if [[ "$ISNVIDIA" == true ]] ; then
-    echo -e "$CNT - Nvidia GPU support setup stage, this may take a while..."
+    echo -e "${CYAN}NOTE${RESET} - Nvidia GPU support setup stage, this may take a while..."
     install_list $LISTNVIDIA
 
     # update config
@@ -161,7 +173,7 @@ if [[ "$ISNVIDIA" == true ]] ; then
     echo -e "\nsource = ~/.config/hypr/nvidia.conf" >> ~/.config/hypr/hyprland.conf
 
     # Install the correct hyprland version
-    echo -e "$CNT - Installing Hyprland, this may take a while..."
+    echo -e "${CYAN}NOTE${RESET} - Installing Hyprland, this may take a while..."
 
     # check for hyprland and remove it so the -nvidia package can be installed
     if yay -Q hyprland &>> /dev/null ; then
@@ -176,18 +188,18 @@ fi
 #esac
 
 # Copy Config Files
-wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to copy config files?'
+wait_yn "${YELLOW}ACITION${RESET} - Would you like to copy config files?"
 if [[ $YN = y ]] ; then
-    echo -e "$CNT - Copying config files..."
+    echo -e "${CYAN}NOTE${RESET} - Copying config files..."
 
     # copy the configs directory
     cp -rT $PARENT/. ~/ &>> $INSTLOG
 fi
 
 # Activate zsh
-wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to activate zsh?'
+wait_yn "${YELLOW}ACITION${RESET} - Would you like to activate zsh?"
 if [[ $YN = y ]] ; then
-    echo -e "$CNT - ZSH, Engage!"
+    echo -e "${CYAN}NOTE${RESET} - ZSH, Engage!"
     chsh -s $(which zsh)
 fi
 
@@ -202,24 +214,24 @@ fi
 sudo cp $PARENT/src/hyprland.desktop /usr/share/wayland-sessions/
 
 # add VScode extensions
-echo -e "$CNT - Adding VScode Extensions"
+echo -e "${CYAN}NOTE${RESET} - Adding VScode Extensions"
 mkdir ~/.vscode
 tar -xf $PARENT/src/extensions.tar.gz -C ~/.vscode/
 
 # Font install for Rofi 
-echo -e "$CNT - Adding Fonts for Rofi"
+echo -e "${CYAN}NOTE${RESET} - Adding Fonts for Rofi"
 sudo mkdir $HOME/.local/share/fonts
 sudo cp $PARENT/src/Icomoon-Feather.ttf $HOME/.local/share/fonts
 
 # Copy the SDDM theme
-echo -e "$CNT - Setting up the login screen."
+echo -e "${CYAN}NOTE${RESET} - Setting up the login screen."
 sudo tar -xf $PARENT/src/sugar-candy.tar.gz -C /usr/share/sddm/themes/
 sudo chown -R $USER:$USER /usr/share/sddm/themes/sugar-candy
 sudo mkdir /etc/sddm.conf.d
 echo -e "[Theme]\nCurrent=sugar-candy" | sudo tee -a /etc/sddm.conf.d/10-theme.conf
 
 # Clean out other portals
-echo -e "$CNT - Cleaning out conflicting xdg portals..."
+echo -e "${CYAN}NOTE${RESET} - Cleaning out conflicting xdg portals..."
 yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
 
 # Enable services
@@ -229,9 +241,9 @@ for SERVICE in ${SERVICES[@]} ; do
 done
 
 # Install MBP audio driver
-wait_yn $'[\e[1;33mACTION\e[0m] - Would you like to install MBP audio driver?'
+wait_yn "${YELLOW}ACITION${RESET} - Would you like to install MBP audio driver?"
 if [[ $YN = y ]] ; then
-    echo -e "$CNT - Installing driver, this may take a while..."
+    echo -e "${CYAN}NOTE${RESET} - Installing driver, this may take a while..."
     cd
     git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
     cd snd_hda_macbookpro/
@@ -246,4 +258,4 @@ sudo gpasswd -a $USER input
 fc-cache -fv &>> $INSTLOG
 
 # Script is done
-echo -e "$CNT - Script had completed!"
+echo -e "${CYAN}NOTE${RESET} - Script had completed!"
