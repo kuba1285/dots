@@ -5,8 +5,6 @@
 # nf-pl-right_hard_divider
 # nf-ple-right_half_circle_thick
 
-command_timeout = 500
-
 format = """
 [╭─](fg:#444444)\
 $os\
@@ -118,12 +116,12 @@ utc_time_offset = '+9'
 
 [shell]
 disabled = false
-bash_indicator = '[    BSH-MODE](aqua)'
-zsh_indicator = '[    ZSH-MODE](fuchsia)'
-nu_indicator = '[    NSH-MODE](blue)'
-fish_indicator = '[    FSH-MODE](yellow)'
-elvish_indicator = '[    ESH-MODE](lime)'
-xonsh_indicator = '[    XSH-MODE](red)'
+bash_indicator = '[   BSH-MODE](aqua)'
+zsh_indicator = '[   ZSH-MODE](fuchsia)'
+nu_indicator = '[   NSH-MODE](blue)'
+fish_indicator = '[   FSH-MODE](yellow)'
+elvish_indicator = '[   ESH-MODE](lime)'
+xonsh_indicator = '[   XSH-MODE](red)'
 
 [lua]
 symbol = "" # nf-seti-lua
