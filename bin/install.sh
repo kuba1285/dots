@@ -173,11 +173,12 @@ if [[ "$ISNVIDIA" == true ]] ; then
     echo -e "WLR_NO_HARDWARE_CURSORS=1" | sudo tee -a /etc/environment
     echo -e "\nsource = ~/.config/hypr/nvidia.conf" >> ~/.config/hypr/hyprland.conf
 
-    # Install the correct hyprland version
-    echo -e "${CYAN}NOTE${RESET} - Installing Hyprland, this may take a while..."
-
     # check for hyprland and remove it so the -nvidia package can be installed
     if yay -Q hyprland &>> /dev/null ; then
+    
+        # Install the correct hyprland version
+        echo -e "${CYAN}NOTE${RESET} - Installing Hyprland, this may take a while..."
+        
         yay -R --noconfirm hyprland &>> $INSTLOG &
         install_software hyprland-nvidia
     fi
