@@ -88,7 +88,7 @@ wait_yn(){
 clear
 set_colors
 
-# give the user an option to exit out
+# give the user an option to exit
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to start with the install?"
 if [[ $YN = y ]] ; then
     echo -e "${CYAN}NOTE${RESET} - Setup starting..."
