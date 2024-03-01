@@ -162,8 +162,8 @@ if [[ $YN = y ]] ; then
 fi
 
 # Enable services
-for SERVICE in ${SERVICES[@]} ; do
-    sudo systemctl enable $SERVICE --now &>> $INSTLOG
+for service in ${SERVICES[@]} ; do
+    sudo systemctl enable $service --now &>> $INSTLOG
     sleep 2
 done
 
