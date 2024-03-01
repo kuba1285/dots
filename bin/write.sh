@@ -43,14 +43,12 @@ if [[ $X11 == "Y" || $X11 == "y" ]]; then
   EndSection
 EOF
   grep -q "xinput set-prop 11 318 1" ~/.xsessionrc ||
-  touch ~/.xsessionrc
   cat << EOF | tee -a ~/.xsessionrc
   xinput set-prop 11 318 1
   xinput --set-prop "Apple SPI Touchpad" "Coordinate Transformation Matrix" 4 0 0 0 4 0 0 0 1
 EOF
 
   grep -q "CornerCoasting" /etc/X11/xorg.conf.d/51-synaptics-tweaks.conf ||
-  touch /etc/X11/xorg.conf.d/51-synaptics-tweaks.conf
   cat << EOF | sudo tee -a /etc/X11/xorg.conf.d/51-synaptics-tweaks.conf
   Section "InputClass"
     Identifier "touchpad"
