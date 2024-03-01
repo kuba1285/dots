@@ -128,14 +128,11 @@ if [ ! -f /sbin/yay ] ; then
     if [ -f /sbin/yay ] ; then
         echo -e "${GREEN}OK${RESET} - yay configured"
         cd ..
-        
-        # update the yay database
         echo -en "${CYAN}NOTE${RESET} - Updating yay."
         yay -Suy --noconfirm &>> $INSTLOG &
         show_progress $!
         echo -e "${GREEN}OK${RESET} - yay updated."
     else
-        # if this is hit then a package is missing, exit to review log
         echo -e "${RED}ERROR${RESET} - yay install failed, please check the install.log"
         exit
     fi
@@ -173,8 +170,6 @@ if [[ $YN = y ]] ; then
     cd
     git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
     cd snd_hda_macbookpro/
-
-    # run the following command as root or with sudo
     sudo ./install.cirrus.driver.sh &>> $INSTLOG
     show_progress $!
 fi
@@ -183,8 +178,6 @@ fi
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to copy config files?"
 if [[ $YN = y ]] ; then
     echo -e "${CYAN}NOTE${RESET} - Copying config files..."
-
-    # copy the configs directory
     cp -rT $PARENT/. ~/ &>> $INSTLOG
 fi
 
@@ -200,5 +193,4 @@ source $BIN/write.sh
 sudo gpasswd -a $USER input
 fc-cache -fv &>> $INSTLOG
 
-# Script is done
 echo -e "${CYAN}NOTE${RESET} - Script had completed!"
