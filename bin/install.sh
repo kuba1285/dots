@@ -119,13 +119,13 @@ if [ ! -f /sbin/yay ] ; then
 fi
 
 # Install listed pacakges
-wait_yn "${YELLOW}ACITION${RESET} - Would you like to install the packages?"
+wait_yn "${YELLOW}ACITION${RESET} - Would you like to install apps from the list?"
 if [[ $YN = y ]] ; then
 echo "${CYAN}NOTE${RESET} - Installing needed components, this may take a while..."
     install_list $LISTAPP
 fi
 
-wait_yn "${YELLOW}ACITION${RESET} - Would you like to install custom applications from a list?"
+wait_yn "${YELLOW}ACITION${RESET} - Would you like to install custom apps from the list?"
 if [[ $YN = y ]] ; then
     install_list $LISTCUSTOM
 fi
