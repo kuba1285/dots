@@ -16,7 +16,7 @@ SERVICES=(
 ######
 
 # set some colors
-set_color() {
+set_colors() {
     if [ -t 1 ]; then
         RED=$(printf '\033[31m')
         GREEN=$(printf '\033[32m')
@@ -87,7 +87,7 @@ wait_yn(){
 ######
 
 clear
-set_color
+set_colors
 
 # give the user an option to exit out
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to start with the install?"
