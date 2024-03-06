@@ -1,5 +1,18 @@
 #!/bin/bash
 
+cat << EOF >> ~/.zshrc
+export PATH="\$PATH:/Users/$USER/bin"
+
+neofetch
+TMOUT=900
+TRAPALRM() {
+MODELS=(\$(ls -d /Users/$USER/bin/models/*))
+SEC=\`date +%S\`
+I=\$((SEC%\$(echo \${#MODELS[@]})+1))
+3d-ascii-viewer -z 120 \${MODELS[\$I]}
+}
+EOF
+
 grep -q "XMODIFIERS=@im=fcitx" /etc/environment ||
 cat << EOF | sudo tee -a /etc/environment
 GTK_IM_MODULE=fcitx
