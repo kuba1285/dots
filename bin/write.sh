@@ -1,11 +1,5 @@
 #!/bin/bash
 
-grep -q "feh --bg-center" ~/.zshrc ||
-mkdir ~/Pictures/
-cat << EOF >> ~/.zshrc
-wallpaper="$(ls -1A ~/Pictures/ | shuf -n 1)"; feh --bg-center $wallpaper; wal -i $wallpaper -n
-EOF
-
 grep -q "XMODIFIERS=@im=fcitx" /etc/environment ||
 cat << EOF | sudo tee -a /etc/environment
 GTK_IM_MODULE=fcitx
@@ -40,6 +34,13 @@ Type=Application
 EOF
 
 if [[ $XDG_SESSION_TYPE = x11 ]] ; then
+
+  grep -q "feh --bg-center" ~/.zshrc ||
+mkdir ~/Pictures/
+cat << EOF >> ~/.zshrc
+wallpaper="$(ls -1A ~/Pictures/ | shuf -n 1)"; feh --bg-center $wallpaper; wal -i $wallpaper -n
+EOF
+
   grep -q "TearFree" /etc/X11/xorg.conf.d/20-intel.conf ||
   cat << EOF | sudo tee -a /etc/X11/xorg.conf.d/20-intel.conf
 GSection "Device"
