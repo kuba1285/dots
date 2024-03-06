@@ -135,7 +135,6 @@ if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia ; then
     echo "${CYAN}NOTE${RESET} - Nvidia GPU support setup stage, this may take a while..."
     install_list $LISTNVIDIA
     source $BIN/nvidia.sh
-    fi
 fi
 
 # forking by desktop environment
