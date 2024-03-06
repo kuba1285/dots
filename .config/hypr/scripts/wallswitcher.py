@@ -22,7 +22,7 @@ def change_wallpaper(folder_path):
     image_path = os.path.join(folder_path, random_image)
 
     # Change the wallpaper
-    os.system(f'swww img -t wipe --transition-duration 3 {image_path}')
+    os.system(f'swww img -t outer --transition-duration 3 {image_path}')
     # Generarte Pywal colorscheme
     os.system(f'wal -i {image_path}')
     #generate wallpaper.rofi 
