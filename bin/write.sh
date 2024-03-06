@@ -33,7 +33,7 @@ Icon=
 Type=Application
 EOF
 
-if [[ $XDG_SESSION_TYPE == xorg ]]; then
+if [[ $XDG_SESSION_TYPE == x11 ]]; then
   grep -q "TearFree" /etc/X11/xorg.conf.d/20-intel.conf ||
   cat << EOF | sudo tee -a /etc/X11/xorg.conf.d/20-intel.conf
   GSection "Device"
