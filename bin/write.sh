@@ -36,28 +36,31 @@ EOF
 if [[ $XDG_SESSION_TYPE = x11 ]] ; then
   grep -q "TearFree" /etc/X11/xorg.conf.d/20-intel.conf ||
   cat << EOF | sudo tee -a /etc/X11/xorg.conf.d/20-intel.conf
-  GSection "Device"
-  Identifier "Intel Graphics"
-  Driver "intel"
-  Option "TearFree" "true"
-  EndSection
+GSection "Device"
+Identifier "Intel Graphics"
+Driver "intel"
+Option "TearFree" "true"
+EndSection
 EOF
 
   grep -q "xinput set-prop 11 318 1" ~/.xsessionrc ||
   cat << EOF | tee -a ~/.xsessionrc
-  xinput set-prop 11 318 1
-  xinput --set-prop "Apple SPI Touchpad" "Coordinate Transformation Matrix" 4 0 0 0 4 0 0 0 1
+xinput set-prop 11 318 1
+xinput --set-prop "Apple SPI Touchpad" "Coordinate Transformation Matrix" 4 0 0 0 4 0 0 0 1
 EOF
 
   grep -q "CornerCoasting" /etc/X11/xorg.conf.d/51-synaptics-tweaks.conf ||
   cat << EOF | sudo tee -a /etc/X11/xorg.conf.d/51-synaptics-tweaks.conf
-  Section "InputClass"
-    Identifier "touchpad"
-    Driver "synaptics"
-    MatchIsTouchpad "on"
-        Option "CornerCoasting" "0"
-        Option "CoastingSpeed" "20"
-        Option "CoastingFriction" "50"
-  EndSection
+Section "InputClass"
+  Identifier "touchpad"
+  Driver "synaptics"
+  MatchIsTouchpad "on"
+      Option "Tapping" "True"
+      Option "TappingDrag" "True"
+      Option "DisableWhileTyping" "True"
+      Option "CornerCoasting" "0"
+      Option "CoastingSpeed" "20"
+      Option "CoastingFriction" "50"
+EndSection
 EOF
 fi
