@@ -34,7 +34,6 @@ Type=Application
 EOF
 
 if [[ $XDG_SESSION_TYPE = x11 ]] ; then
-
   grep -q "feh --bg-center" ~/.zshrc ||
 mkdir ~/Pictures/
 cat << EOF >> ~/.zshrc
