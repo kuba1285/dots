@@ -1,6 +1,7 @@
 #!/bin/bash
 
 grep -q "--bg-center" ~/.zshrc ||
+mkdir ~/Pictures/
 cat << EOF >> ~/.zshrc
 wallpaper="$(ls -1A ~/Pictures/ | shuf -n 1)"; feh --bg-center $wallpaper; wal -i $wallpaper -n
 EOF
