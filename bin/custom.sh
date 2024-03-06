@@ -1,6 +1,9 @@
 #!/bin/bash
 
 cd
+go install github.com/orangekame3/paclear@latest
+
+cd
 git clone http://github.com/possatti/pokemonsay &>> $INSTLOG
 cd pokemonsay
 ./install.sh &>> $INSTLOG
