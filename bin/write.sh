@@ -1,5 +1,10 @@
 #!/bin/bash
 
+grep -q "--bg-center" ~/.zshrc ||
+cat << EOF >> ~/.zshrc
+wallpaper="$(ls -1A ~/Pictures/ | shuf -n 1)"; feh --bg-center $wallpaper; wal -i $wallpaper -n
+EOF
+
 grep -q "XMODIFIERS=@im=fcitx" /etc/environment ||
 cat << EOF | sudo tee -a /etc/environment
 GTK_IM_MODULE=fcitx
