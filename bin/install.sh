@@ -137,6 +137,15 @@ if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia ; then
     source $BIN/nvidia.sh
 fi
 
+# Install custom app
+wait_yn "${YELLOW}ACITION${RESET} - Would you like to install custom app?"
+if [[ $YN = y ]] ; then
+    echo -n "${CYAN}NOTE${RESET} - Now installing custom app."
+    source $BIN/custom.sh
+    show_progress $!
+    echo "${GREEN}OK${RESET} - Installed."
+fi
+
 # forking by desktop environment
 #case "$(neofetch de)" in  
 #    *Aqua* ) echo aqua ;;
