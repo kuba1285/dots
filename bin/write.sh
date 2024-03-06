@@ -61,12 +61,12 @@ Section "InputClass"
   Identifier "touchpad"
   Driver "synaptics"
   MatchIsTouchpad "on"
-      Option "Tapping" "True"
-      Option "TappingDrag" "True"
-      Option "DisableWhileTyping" "True"
-      Option "CornerCoasting" "0"
-      Option "CoastingSpeed" "20"
-      Option "CoastingFriction" "50"
+    Option "Tapping" "True"
+    Option "TappingDrag" "True"
+    Option "DisableWhileTyping" "True"
+    Option "CornerCoasting" "0"
+    Option "CoastingSpeed" "20"
+    Option "CoastingFriction" "50"
 EndSection
 EOF
 fi
