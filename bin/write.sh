@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cat << EOF >> ~/.zshrc
-export PATH="\$PATH:/Users/$USER/bin"
+export PATH="\$PATH:/home/$USER/bin"
 
 neofetch
 TMOUT=900
