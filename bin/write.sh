@@ -83,4 +83,65 @@ Section "InputClass"
     Option "CoastingFriction" "50"
 EndSection
 EOF
+
+  cat < EOF | tee -a ~/.config/fusuma/config.yaml
+swipe:
+  4:
+    left:
+      sendkey: 'LEFTMETA+LEFTCTRL+RIGHT' # next
+    right:
+      sendkey: 'LEFTMETA+LEFTCTRL+LEFT'  # previous
+threshold:
+  swipe: 0.7
+interval:
+  swipe: 0.8
+---
+context:
+  application:  Google-chrome
+swipe:
+  3:
+    begin:
+      command: xdotool keydown Ctrl # hold ctrl down
+    right:
+      update:
+        command: xdotool key Tab  # press tab
+        interval: 3
+    left:
+      update:
+        command: xdotool key Shift+Tab # press shift+tab
+        interval: 3
+    end:
+      command: xdotool keyup Ctrl  Ctrl # release ctrl
+    up:
+      sendkey: 'LEFTCTRL+T'    # new tab
+      keypress:
+        LEFTSHIFT: # when press shift down
+          sendkey: 'LEFTSHIFT+LEFTCTRL+T' # open last closed tab
+    down:
+      sendkey: 'LEFTCTRL+W'    # close tab
+---
+context:
+  application:  firefox
+swipe:
+  3:
+    begin:
+      command: xdotool keydown Ctrl # hold ctrl down
+    right:
+      update:
+        command: xdotool key Tab  # press tab
+        interval: 3
+    left:
+      update:
+        command: xdotool key Shift+Tab # press shift+tab
+        interval: 3
+    end:
+      command: xdotool keyup Ctrl  Ctrl # release ctrl
+    up:
+      sendkey: 'LEFTCTRL+T'    # new tab
+      keypress:
+        LEFTSHIFT: # when press shift down
+          sendkey: 'LEFTSHIFT+LEFTCTRL+T' # open last closed tab
+    down:
+      sendkey: 'LEFTCTRL+W'    # close tab
+EOF
 fi
