@@ -48,9 +48,9 @@ EOF
 
 if [[ $XDG_SESSION_TYPE = x11 ]] ; then
   grep -q "feh --bg-center" ~/.zshrc ||
-WPDIR=~/.config/swww/
-mkdir $WPDIR
-cat << EOF >> ~/.zshrc
+  WPDIR=~/.config/swww/
+  mkdir $WPDIR
+  cat << EOF >> ~/.zshrc
 WALLPAPER="$(ls -1a $WPDIR | shuf -n 1)"; feh --bg-center $WALLPAPER; wal -i $WALLPAPER -n
 EOF
 
