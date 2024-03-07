@@ -48,9 +48,9 @@ EOF
 
 if [[ $XDG_SESSION_TYPE = x11 ]] ; then
   grep -q "feh --bg-center" ~/.zshrc ||
-mkdir ~/Pictures/
+mkdir ~/.config/swww/
 cat << EOF >> ~/.zshrc
-WALLPAPER="$(ls -1a ~/Pictures/ | shuf -n 1)"; feh --bg-center $WALLPAPER; wal -i $WALLPAPER -n
+WALLPAPER="$(ls -1a ~/.config/swww/ | shuf -n 1)"; feh --bg-center $WALLPAPER; wal -i $WALLPAPER -n
 EOF
 
   grep -q "TearFree" /etc/X11/xorg.conf.d/20-intel.conf ||
