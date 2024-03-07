@@ -149,24 +149,31 @@ if [[ $YN = y ]] ; then
     cd
     git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
     cd snd_hda_macbookpro/
-    sudo ./install.cirrus.driver.sh &>> $INSTLOG
+    sudo ./install.cirrus.driver.sh &>> $INSTLOG &
     show_progress $!
+    echo "${GREEN}OK${RESET} - Installed."
 fi
 
 # Copy Config Files
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to copy config files?"
 if [[ $YN = y ]] ; then
-    cp -rT $PARENT/. ~/ &>> $INSTLOG
+    cp -rT $PARENT/. ~/ &>> $INSTLOG &
+    show_progress $!
+    echo "${GREEN}OK${RESET} - Done."
 fi
 
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to stage the file?"
 if [[ $YN = y ]] ; then
-    source $BIN/stage.sh &>> $INSTLOG
+    source $BIN/stage.sh &>> $INSTLOG &
+    show_progress $!
+    echo "${GREEN}OK${RESET} - Done."
 fi
 
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to write to the config files?"
 if [[ $YN = y ]] ; then
-    source $BIN/write.sh &>> $INSTLOG
+    source $BIN/write.sh &>> $INSTLOG &
+    show_progress $!
+    echo "${GREEN}OK${RESET} - Done."
 fi
 
 # Enable services
