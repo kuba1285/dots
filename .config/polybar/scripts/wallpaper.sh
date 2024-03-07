@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory containing wallpapers
-WALLPAPER_DIR="$HOME/Pictures/"
+WALLPAPER_DIR="$HOME/swww/"
 
 # File to store the current wallpaper path
 CURRENT_WALLPAPER_FILE="$WALLPAPER_DIR/wallpaper.rofi"
