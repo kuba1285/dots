@@ -84,7 +84,7 @@ Section "InputClass"
 EndSection
 EOF
 
-  cat << EOF | tee -a ~/.config/fusuma/config.yml
+  cat << EOF | tee ~/.config/fusuma/config.yml
 swipe:
   4:
     left:
