@@ -141,15 +141,10 @@ fi
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to install custom app?"
 if [[ $YN = y ]] ; then
     echo -n "${CYAN}NOTE${RESET} - Now installing custom app."
-    source $BIN/custom.sh
+    source $BIN/custom.sh &>> $INSTLOG &
     show_progress $!
     echo "${GREEN}OK${RESET} - Installed."
 fi
-
-# forking by desktop environment
-#case "$(neofetch de)" in  
-#    *Aqua* ) echo aqua ;;
-#esac
 
 # Install MBP audio driver
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to install MBP audio driver?"
@@ -169,14 +164,24 @@ if [[ $YN = y ]] ; then
     cp -rT $PARENT/. ~/ &>> $INSTLOG
 fi
 
-# Enable services
-for service in ${SERVICES[@]} ; do
-    sudo systemctl enable $service --now &>> $INSTLOG
-    sleep 2
-done
+wait_yn "${YELLOW}ACITION${RESET} - Would you like to stage the file?"
+if [[ $YN = y ]] ; then
+    source $BIN/stage.sh &>> $INSTLOG
+fi
 
-source $BIN/stage.sh
-source $BIN/write.sh
+wait_yn "${YELLOW}ACITION${RESET} - Would you like to write to the config files?"
+if [[ $YN = y ]] ; then
+    source $BIN/write.sh &>> $INSTLOG
+fi
+
+# Enable services
+wait_yn "${YELLOW}ACITION${RESET} - Would you like to write to enable services?"
+if [[ $YN = y ]] ; then
+    for service in ${SERVICES[@]} ; do
+        sudo systemctl enable $service --now &>> $INSTLOG
+        sleep 2
+    done
+fi
 
 sudo gpasswd -a $USER input
 fc-cache -fv &>> $INSTLOG
