@@ -51,7 +51,7 @@ if [[ $XDG_SESSION_TYPE = x11 ]] ; then
   WPDIR=~/.config/swww/
   mkdir $WPDIR
   cat << EOF >> ~/.zshrc
-WALLPAPER="\$(ls -1a $WPDIR | shuf -n 1)"; feh --bg-center \$WALLPAPER; wal -i \$WALLPAPER -n
+WALLPAPER="\$(ls -d $WPDIR* | shuf -n 1)"; feh --bg-center \$WALLPAPER; wal -i \$WALLPAPER -n
 EOF
 
   grep -q "xinput set-prop 11 318 1" ~/.xsessionrc ||
