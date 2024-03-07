@@ -121,7 +121,6 @@ fi
 # Install listed pacakges
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to install apps from the list?"
 if [[ $YN = y ]] ; then
-echo "${CYAN}NOTE${RESET} - Installing needed components, this may take a while..."
     install_list $LISTAPP
 fi
 
@@ -132,7 +131,6 @@ fi
 
 # Setup Nvidia if it was found
 if lspci -k | grep -A 2 -E "(VGA|3D)" | grep -iq nvidia ; then
-    echo "${CYAN}NOTE${RESET} - Nvidia GPU support setup stage, this may take a while..."
     install_list $LISTNVIDIA
     source $BIN/nvidia.sh
 fi
@@ -140,7 +138,6 @@ fi
 # Install custom app
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to install custom app?"
 if [[ $YN = y ]] ; then
-    echo -n "${CYAN}NOTE${RESET} - Now installing custom app."
     source $BIN/custom.sh &>> $INSTLOG &
     show_progress $!
     echo "${GREEN}OK${RESET} - Installed."
@@ -149,7 +146,6 @@ fi
 # Install MBP audio driver
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to install MBP audio driver?"
 if [[ $YN = y ]] ; then
-    echo -n "${CYAN}NOTE${RESET} - Installing driver, this may take a while..."
     cd
     git clone https://github.com/davidjo/snd_hda_macbookpro.git &>> $INSTLOG
     cd snd_hda_macbookpro/
@@ -160,7 +156,6 @@ fi
 # Copy Config Files
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to copy config files?"
 if [[ $YN = y ]] ; then
-    echo "${CYAN}NOTE${RESET} - Copying config files..."
     cp -rT $PARENT/. ~/ &>> $INSTLOG
 fi
 
