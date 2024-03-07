@@ -94,7 +94,6 @@ if [[ $YN = y ]] ; then
     echo "${CYAN}NOTE${RESET} - Setup starting..."
     sudo touch /tmp/hyprv.tmp
 else
-    echo "${CYAN}NOTE${RESET} - This script will now exit, no changes were made to your system."
     exit
 fi
 
