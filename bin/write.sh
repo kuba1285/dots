@@ -47,11 +47,9 @@ Type=Application
 EOF
 
 if [[ $XDG_SESSION_TYPE = x11 ]] ; then
-  grep -q "feh --bg-center" ~/.zshrc ||
-  WPDIR=~/.config/swww/
-  mkdir $WPDIR
+  grep -q "bash ~/.config/polybar/scripts.wallpaper.sh" ~/.zshrc ||
   cat << EOF >> ~/.zshrc
-WALLPAPER="\$(ls -d $WPDIR* | shuf -n 1)"; feh --bg-center \$WALLPAPER; wal -i \$WALLPAPER -n
+bash ~/.config/polybar/scripts.wallpaper.sh
 EOF
 
   grep -q "xinput set-prop 11 318 1" ~/.xsessionrc ||
