@@ -4,6 +4,7 @@ picom
 make
 patch
 google-chrome
+gotop
 ruby-fusuma
 dotool
 neovide
