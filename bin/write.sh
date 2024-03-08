@@ -47,9 +47,9 @@ Type=Application
 EOF
 
 if [[ $XDG_SESSION_TYPE = x11 ]] ; then
-  grep -q "bash ~/.config/polybar/scripts.wallpaper.sh" ~/.zshrc ||
+  grep -q "bash ~/.config/polybar/scripts/wallpaper.sh" ~/.zshrc ||
   cat << EOF >> ~/.zshrc
-bash ~/.config/polybar/scripts.wallpaper.sh
+bash ~/.config/polybar/scripts/wallpaper.sh
 EOF
 
   grep -q "xinput set-prop 11 318 1" ~/.xsessionrc ||
