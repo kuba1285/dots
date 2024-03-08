@@ -34,7 +34,7 @@ sudo sed -i -e '/^ *exec -a/c\exec -a "$0" "$HERE/chrome" "$@" --gtk-version=4 -
 
 if [[ $XDG_SESSION_TYPE = x11 ]] ; then
   grep -q "bash ~/.config/polybar/scripts/wallpaper.sh" ~/.zshrc ||
-  sed -i '1ibash ~/.config/polybar/scripts/wallpaper.sh' ~/.zshrc
+  sed -i "1ibash ~/.config/polybar/scripts/wallpaper.sh" ~/.zshrc
 
   grep -q "xinput set-prop" ~/.xsessionrc ||
   cat << EOF | tee -a ~/.xsessionrc
