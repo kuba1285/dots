@@ -13,7 +13,7 @@ WALLPAPERS=("$WALLPAPER_DIR"/*.jpg "$WALLPAPER_DIR"/*.png)
 NEXT_INDEX=$(($(($RANDOM % ${#WALLPAPERS[@]})) - 1))
 
 # Set the next wallpaper using feh img with the full path
-feh --bg-center "${WALLPAPERS[$NEXT_INDEX]}" ; wal -i "${WALLPAPERS[$NEXT_INDEX]}" -n
+feh --bg-fill "${WALLPAPERS[$NEXT_INDEX]}" ; wal -i "${WALLPAPERS[$NEXT_INDEX]}" -n
 
 # Copy the currently set wallpaper to current_wallpaper.rofi
 cp "${WALLPAPERS[$NEXT_INDEX]}" "$CURRENT_WALLPAPER_FILE"
