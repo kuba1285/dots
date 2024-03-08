@@ -32,20 +32,6 @@ sudo sed -i -e "/^ *#DefaultTimeoutStopSec=90s/c\ DefaultTimeoutStopSec=10s" /et
 sudo sed -i -e '/^ *exec -a/c\exec -a "$0" "$HERE/chrome" "$@" --gtk-version=4 --ozone-platform-hint=auto --enable-gpu-rasterization --enable-zero-copy \
 --enable-features=TouchpadOverscrollHistoryNavigation --disable-smooth-scrolling --enable-fluent-scrollbars' /opt/google/chrome/google-chrome
 
-# steam big picture mode setting
-grep -q "Exec=/usr/bin/steam -bigpicture" /usr/share/xsessions/steam-big-picture.desktop ||
-sudo mkdir -p /usr/share/xsessions/
-sudo touch /usr/share/xsessions/steam-big-picture.desktop
-cat << EOF | sudo tee -a /usr/share/xsessions/steam-big-picture.desktop
-[Desktop Entry]
-Name=Steam Big Picture Mode
-Comment=Start Steam in Big Picture Mode
-Exec=/usr/bin/steam -bigpicture
-TryExec=/usr/bin/steam
-Icon=
-Type=Application
-EOF
-
 if [[ $XDG_SESSION_TYPE = x11 ]] ; then
   grep -q "bash ~/.config/polybar/scripts/wallpaper.sh" ~/.zshrc ||
   cat << EOF >> ~/.zshrc
