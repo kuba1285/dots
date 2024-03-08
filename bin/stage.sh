@@ -2,6 +2,7 @@
 
 # make files exec
 chmod +x ~/.config/hypr/scripts/*
+chmod +x ~/.config/polybar/scripts/*
 
 # stage the .desktop file
 WLDIR=/usr/share/wayland-sessions
