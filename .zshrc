@@ -144,7 +144,6 @@ alias pa='pacman -Ss' # list availabe package
 alias pc='sudo pacman -Sc' # remove unused cache
 alias po='pacman -Qtdq | sudo pacman -Rns -' # remove unused packages, also try > pacman -Qqd | pacman -Rsu --print -
 alias vc='code' # gui code editor
-alias neofetch='neowofetch --gap -30 --ascii "$(fortune -s | pokemonsay -w 30)"'
 alias clear='paclear -s 5 -c yellow'
 cheatsh() { curl "http://cheat.sh/$1"; }
 eval "$(starship init zsh)"
