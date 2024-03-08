@@ -188,6 +188,7 @@ if [[ $YN = y ]] ; then
 fi
 
 sudo gpasswd -a $USER input
+chsh -s $(which zsh) $USER
 fc-cache -fv &>> $INSTLOG
 
 echo "${CYAN}NOTE${RESET} - Script had completed!"
