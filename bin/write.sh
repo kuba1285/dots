@@ -1,12 +1,12 @@
 #!/bin/bash
 
 cat << EOF >> ~/.zshrc
-export PATH="\$PATH:/home/$USER/bin"
+export PATH="\$PATH:/$HOME/bin"
 
 neofetch
 TMOUT=900
 TRAPALRM() {
-MODELS=(\$(ls -d /home/$USER/bin/models/*))
+MODELS=(\$(ls -d /$HOME/bin/models/*))
 SEC=\`date +%S\`
 I=\$((SEC%\$(echo \${#MODELS[@]})+1))
 3d-ascii-viewer -z 120 \${MODELS[\$I]}
