@@ -36,7 +36,7 @@ if [[ $XDG_SESSION_TYPE = x11 ]] ; then
   grep -q "bash ~/.config/polybar/scripts/wallpaper.sh" ~/.zshrc ||
   sed -i '1ibash ~/.config/polybar/scripts/wallpaper.sh' ~/.zshrc
 
-  grep -q "xinput set-prop 11 318 1" ~/.xsessionrc ||
+  grep -q "xinput set-prop" ~/.xsessionrc ||
   cat << EOF | tee -a ~/.xsessionrc
 xinput set-prop 11 318 1
 xinput --set-prop "Apple SPI Touchpad" "Coordinate Transformation Matrix" 4 0 0 0 4 0 0 0 1
