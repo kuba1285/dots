@@ -66,3 +66,4 @@ xdotool
 xorg-xinput
 picom-ftlabs-git
 ruby-fusuma-plugin-appmatcher
+ruby-fusuma-plugin-sendkey
