@@ -16,37 +16,16 @@
 ;
 ;==========================================================
 
+#this goes to config.ini with running wal-polybar.py
 [colors]
-#background = ${wal.color0}
-#background-alt = ${wal.color8}
-#foreground = ${wal.color7}
-#foreground-alt = ${wal.color7}
-#primary = ${wal.color1}
-#secondary = ${wal.color2}
-#alert = ${wal.color3}
-background = #aa1A1B26
-background-alt = #aa373B41
-foreground = #C5C8C6
-primary = #5FABE9
-secondary = #8ABEB7
-alert = #A54242
-disabled = #707880
-Rosewater = #f5e0dc
-Flamingo = #f2cdcd
-Pink = #f5c2e7
-Mauve = #cba6f7
-Red = #f38ba8
-Maroon = #eba0ac
-Peach = #fab387
-Yellow = #f9e2af
-Green = #a6e3a1
-Teal = #94e2d5
-Sky = #89dceb
-Sapphire = #74c7ec
-Blue = #89b4fa
-Lavender = #b4befe
-Base = #1e1e2e
-Mantle = #181825
+background = ${wal.color4}
+background-alt = ${wal.color12}
+foreground = #FFFFFF
+foreground-alt = ${wal.color15}
+primary = ${wal.color0}
+secondary = ${wal.color6}
+alert = ${wal.color3}
+disabled = ${wal.color8}
 
 [wm]
 name = bspwm
@@ -88,8 +67,8 @@ border-color = #00000000
 modules-center = xwindow
 
 [bar/right]
-width = 26%
-offset-x = 73%
+width = 20%
+offset-x = 79%
 offset-y = 22
 height = 24pt
 radius = 16
@@ -119,11 +98,11 @@ label-background = ${colors.background-alt}
 
 [module/menu]
 type = custom/text
-content = 󰣇
+content = 
 content-font = 3
-content-foreground = ${colors.Red}
+content-foreground = ${colors.primary}
 content-margin = 1
-click-left = "if pgrep -x rofi; then killall rofi;else sleep 0.1 && ~/.config/polybar/scripts/launcher.sh;fi"
+click-left = "bash ~/.config/polybar/script/launcher.sh"
 
 [module/xworkspaces]
 type = internal/xworkspaces
@@ -135,6 +114,7 @@ label-active-padding = 5px
 label-active-foreground = ${colors.primary}
 label-occupied = 󰊠 
 label-occupied-padding = 5px
+label-occupied-foreground = ${colors.secondary}
 label-urgent = 󰊠 
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 5px
@@ -212,15 +192,13 @@ date = %b %d(%a) %H:%M
 type = custom/text
 content = ⏻
 content-font = 3
-content-foreground = ${colors.Red}
+content-foreground = ${colors.primary}
 content-margin = 1
 click-left = "bash ~/.config/polybar/scripts/powermenu.sh"
 
 [module/arrow]
 type = custom/text
-#use this if it looks small : content = %{T2}%{T-}
-content =  
-content-background = ${colors.background}
+content = %{T2}%{T-}
 content-foreground = ${colors.primary}
 click-left = "~/.config/polybar/scripts/tray.py"
 
