@@ -154,7 +154,6 @@ if [[ $YN = y ]] ; then
     sudo ./install.cirrus.driver.sh &>> $INSTLOG &
     show_progress $!
     cd
-    sudo rm -rf snd_hda_macbookpro
     echo "${GREEN}OK${RESET} - Installed."
 fi
 
