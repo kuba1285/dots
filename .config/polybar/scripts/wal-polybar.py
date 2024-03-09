@@ -6,7 +6,7 @@ import sys
 VERSION = '0.9'
 HOME = os.getenv('HOME')
 POLYBAR_CONFIG_FOLDER_PATH = join(HOME, '.config/polybar/')
-POLYBAR_CONFIG_PATH = join(POLYBAR_CONFIG_FOLDER_PATH, 'config')
+POLYBAR_CONFIG_PATH = join(POLYBAR_CONFIG_FOLDER_PATH, 'config.ini')
 POLYBAR_TEMPLATE_PATH = join(POLYBAR_CONFIG_FOLDER_PATH, 'config.template')
 WAL_CACHE_PATH = join(HOME, '.cache/wal/colors')
 
