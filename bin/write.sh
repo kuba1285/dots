@@ -6,7 +6,7 @@ export PATH="\$PATH:/$HOME/bin"
 neofetch
 TMOUT=900
 TRAPALRM() {
-MODELS=(\$(ls -d /$HOME/bin/models/*))
+MODELS=(\$(ls -d $HOME/bin/models/*))
 SEC=\`date +%S\`
 I=\$((SEC%\$(echo \${#MODELS[@]})+1))
 3d-ascii-viewer -z 120 \${MODELS[\$I]}
