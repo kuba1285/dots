@@ -161,7 +161,7 @@ fi
 # Copy Config Files
 wait_yn "${YELLOW}ACITION${RESET} - Would you like to copy config files?"
 if [[ $YN = y ]] ; then
-    cp -rT $PARENT/.[^.]* ~/ &>> $INSTLOG &
+    cp -rT $PARENT/. ~/ &>> $INSTLOG &
     show_progress $!
     echo "${GREEN}OK${RESET} - Done."
 fi
