@@ -62,5 +62,6 @@ lxappearance
 xfce4-settings
 nwg-look-bin
 sddm
+xorg-xinput
 picom-ftlabs-git
 ruby-fusuma-plugin-appmatcher
