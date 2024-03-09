@@ -18,6 +18,8 @@ feh --bg-fill "${WALLPAPERS[$NEXT_INDEX]}" ; wal -i "${WALLPAPERS[$NEXT_INDEX]}"
 # Copy the currently set wallpaper to current_wallpaper.rofi
 cp "${WALLPAPERS[$NEXT_INDEX]}" "$CURRENT_WALLPAPER_FILE"
 
+# polybar script
+~/.config/polybar/scripts/wal-polybar.py
 # cava
 cp ~/.cache/wal/colors-cava ~/.config/cava/config
 # kitty 
