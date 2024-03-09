@@ -105,6 +105,8 @@ if [ ! -f /sbin/yay ] ; then
     cd yay
     makepkg -si --noconfirm &>> $INSTLOG &
     show_progress $!
+    cd
+    rm -rf yay
     if [ -f /sbin/yay ] ; then
         echo "${GREEN}OK${RESET} - yay configured"
         cd ..
