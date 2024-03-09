@@ -62,6 +62,7 @@ lxappearance
 xfce4-settings
 nwg-look-bin
 sddm
+alsa-utils
 xdotool
 xorg-xinput
 picom-ftlabs-git
