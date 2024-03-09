@@ -1,5 +1,6 @@
 #!/bin/bash
 
+grep -q "TMOUT=900" ~/.zshrc ||
 cat << EOF >> ~/.zshrc
 export PATH="\$PATH:$HOME/bin"
 
