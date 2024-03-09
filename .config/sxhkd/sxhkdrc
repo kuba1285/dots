@@ -8,7 +8,8 @@ super + Return
 
 # program launcher
 super + @space
-	dmenu_run
+#	dmenu_run
+	~/.config/polybar/script/launcher.sh
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -120,3 +121,13 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+## Media keys
+XF86AudioRaiseVolume
+	pactl set-sink-volume 0 +5%
+
+XF86AudioLowerVolume
+	pactl set-sink-volume 0 -5%
+
+XF86AudioMute
+	pactl set-sink-mute 0 toggle
