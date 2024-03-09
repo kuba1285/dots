@@ -2,7 +2,6 @@
 
 cd
 go install github.com/orangekame3/paclear@latest
-rm -rf go
 
 cd
 wget https://github.com/autopawn/3d-ascii-viewer/archive/refs/tags/v1.4.0.tar.gz
