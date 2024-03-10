@@ -45,20 +45,15 @@ function show_progress() {
 
 # function that will test for a package and if not found it will attempt to install it
 function install_software() {
-    # First lets see if the package is there
     if yay -Q $1 &>> /dev/null ; then
         echo  "${GREEN}OK${RESET} - $1 is already installed."
     else
-        # no package found so installing
         echo -n "${CYAN}NOTE${RESET} - Now installing $1 ."
         yay -S --noconfirm $1 &>> $INSTLOG &
         show_progress $!
-        
-        # test to make sure package installed
         if yay -Q $1 &>> /dev/null ; then
             echo "${GREEN}OK${RESET} - $1 was installed."
         else
-            # if this is hit then a package is missing, exit to review log
             echo "${RED}ERROR${RESET} - $1 install had failed, please check install.log"
             exit
         fi
