@@ -85,8 +85,8 @@ monitor-strict = false
 width = 20
 height = 24
 ######### offset values only determine the position of bar in the screen set it accordingly to your need
-offset-x = 98%
-offset-y = 35 
+offset-x = 97%
+offset-y = 60
 ############### to make offset vales to work override-direct value must be true  
 override-redirect = true
 fixed-center = true
@@ -112,7 +112,7 @@ tray-background = ${colors.background}
 ######################################################
 [module/menu]
 type = custom/text
-content = 
+content =  
 content-font = 3
 content-foreground = ${colors.primary}
 content-margin = 1
@@ -214,7 +214,7 @@ click-left = "bash ~/.config/polybar/scripts/powermenu.sh"
 type = custom/text
 content = %{T2}%{T-}
 content-foreground = ${colors.primary}
-click-left = "~/.config/polybar/scripts/tray.py"
+click-left = "python3 ~/.config/polybar/scripts/tray.py"
 
 [module/space]
 type = custom/text
