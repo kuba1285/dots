@@ -60,6 +60,7 @@ radius = 16
 background = ${colors.background}
 foreground = ${colors.foreground}
 font-0 = JetBrainsMono Nerd Font;2
+font-1 = Noto Sans CJK JP;2
 wm-restack = ${wm.name}
 line-size = 3pt
 border-size = 3pt
@@ -102,7 +103,7 @@ content = 
 content-font = 3
 content-foreground = ${colors.primary}
 content-margin = 1
-click-left = "bash ~/.config/polybar/script/launcher.sh"
+click-left = "if pgrep -x rofi; then killall rofi;else sleep 0.1 && ~/.config/polybar/scripts/launcher.sh;fi"
 
 [module/xworkspaces]
 type = internal/xworkspaces
