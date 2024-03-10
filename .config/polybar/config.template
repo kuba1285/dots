@@ -40,7 +40,6 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 font-0 = JetBrainsMono Nerd Font;2
 wm-restack = ${wm.name}
-line-size = 3pt
 border-size = 1pt
 border-color = #FF000000
 padding-left = 5px
@@ -61,7 +60,6 @@ foreground = ${colors.foreground}
 font-0 = JetBrainsMono Nerd Font;2
 font-1 = Noto Sans CJK JP;2
 wm-restack = ${wm.name}
-line-size = 3pt
 border-size = 1pt
 border-color = #FF000000
 modules-center = xwindow
@@ -76,7 +74,6 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 font-0 = JetBrainsMono Nerd Font;2
 wm-restack = ${wm.name}
-line-size = 3pt
 border-size = 1pt
 border-color = #FF000000
 module-margin = 8px
@@ -86,12 +83,12 @@ modules-right = pulseaudio network battery date power arrow space
 [bar/tray]
 monitor-strict = false
 width = 20
-height = 25
+height = 24
+######### offset values only determine the position of bar in the screen set it accordingly to your need
 offset-x = 98%
-######### offset values only dtermine the position of bar in the screen set it accordingly to your need
-offset-y = 35   
+offset-y = 35 
+############### to make offset vales to work override-direct value must be true  
 override-redirect = true
-############### to make offset vales to work override-direct value must be true
 fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
