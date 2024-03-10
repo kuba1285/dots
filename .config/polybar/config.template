@@ -15,7 +15,6 @@
 ;   The README contains a lot of information
 ;
 ;==========================================================
-
 #this goes to config.ini with running wal-polybar.py
 [colors]
 background = ${wal.color4}
@@ -85,18 +84,6 @@ padding-right = 10px
 modules-right = pulseaudio network battery date power arrow space
 
 ######################################################
-[module/bi]
-type = custom/text
-label = "%{T5}%{T-}"
-label-foreground = ${colors.foreground}
-label-background = ${colors.background-alt}
-
-[module/bd]
-type = custom/text
-label = "%{T5}%{T-}"
-label-foreground = ${colors.foreground}
-label-background = ${colors.background-alt}
-
 [module/menu]
 type = custom/text
 content = 
