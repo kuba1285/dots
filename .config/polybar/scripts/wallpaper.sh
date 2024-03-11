@@ -26,7 +26,7 @@ cp ~/.cache/wal/colors-cava ~/.config/cava/config
 cp ~/.cache/wal/colors-kitty.conf ~/.config/kitty/
 # mako
 cp ~/.cache/wal/colors-mako ~/.config/mako/config
- # rofi 
+# rofi 
 cp ~/.cache/wal/colors-rofi.rasi ~/.config/rofi/colors/colors-rofi.rasi
- # firefox
+# firefox
 pywalfox update
