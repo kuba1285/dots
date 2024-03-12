@@ -146,4 +146,4 @@ alias po='pacman -Qtdq | sudo pacman -Rns -' # remove unused packages, also try 
 alias vc='code' # gui code editor
 alias clear='paclear -s 5 -c yellow'
 cheatsh() { curl "http://cheat.sh/$1"; }
-eval "$(starship init zsh)"
+eval "$(starship init $0)"
