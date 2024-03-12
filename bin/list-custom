@@ -1,6 +1,7 @@
 linux-headers
 hyfetch
 cowfortune
+figlet
 make
 patch
 google-chrome
