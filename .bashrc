@@ -13,4 +13,4 @@ alias grep='grep --color=auto'
 alias neofetch='neowofetch --gap -30 --ascii "$(fortune -s | pokemonsay -w 30)"'
 alias clear='paclear -s 5 -c yellow'
 cheatsh() { curl "http://cheat.sh/$1"; }
-eval "$(starship init bash)"
+eval "$(starship init $0)"
