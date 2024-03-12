@@ -1,4 +1,4 @@
-unction command_not_found_handler(){
+function command_not_found_handler(){
 	echo -e "\e[31m	▄▄▌ ▐ ▄▌ ▄▄▄· .▄▄ · ▄▄▄▄▄▄▄▄ .·▄▄▄▄  \n" \
 			"	██· █▌▐█▐█ ▀█ ▐█ ▀. •██  ▀▄.▀·██▪ ██ \n" \
 			"	██▪▐█▐▐▌▄█▀▀█ ▄▀▀▀█▄ ▐█.▪▐▀▀▪▄▐█· ▐█▌\n" \
