@@ -22,7 +22,6 @@ swaylock-effects
 rofi-lbonn-wayland-git
 fish
 zsh-autosuggestions
-oh-my-zsh-git
 zsh-syntax-highlighting
 xdg-desktop-portal-hyprland
 dracula-gtk-theme
