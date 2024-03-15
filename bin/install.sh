@@ -39,7 +39,7 @@ function show_progress() {
         echo -n "."
         sleep 2
     done
-    echo -en "Done!\n"
+    echo -en 'Done!\n'
     sleep 2
 }
 
